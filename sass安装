@@ -1,0 +1,5 @@
+sass的使用和安装
+
+1.安装ruby（安装路径中的文件夹名字中不能包含空格，不然无法编译sass）
+2.然后在ruby的命令行中通过gem install sass安装sass
+3.sass更新 gem update sass
