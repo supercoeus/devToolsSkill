@@ -1,1 +1,9 @@
+1.sass的使用首先需要安装ruby,ruby安装完成后
+
+2.用ruby的命令行工具 输入gem install sass （ 如果需要compass，也可以通过输入gem install compass来安装compass）
+
+3.安装完成后 进入一个希望建立scss项目的文件夹  通过compass create projectName来创建一个sass项目
+
+4.创建完成后，通过sass --watch file.scss:file.css来动态监听并生成css文件
+  （如果希望监听所有的文件，sass --watch scss文件夹名：css文件夹名即可）
 
