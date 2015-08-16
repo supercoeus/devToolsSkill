@@ -1,0 +1,24 @@
+1.首先全局安装 grunt-cli         npm install grunt-cli -g
+2.在具体的项目目录下安装grunt    npm install grunt --save-dev   安装grunt模块并保存在package.json中作为开发依赖
+3.配置gruntFile.js文件     
+4.不同的grunt task（指sass  cssmin等各功能块)需要安装不同的功能块组件  如sass  需要安装grunt-contrib-sass   
+  安装方法  npm install grunt-contrib-sass --save-dev
+  其他组件的安装方法和sass安装方法一致
+
+sass的配置
+module.exports=function(grunt){
+	grunt.initConfig({
+		sass: {
+		    build: {
+		        options: {
+		            style: 'compressed'
+		        },
+		        files: {
+		            'css/base.css': 'sass/base.scss'
+		        }
+		    }
+		}
+	});
+	grunt.loadNpmTasks("grunt-contrib-sass");//加载相应模块的组件
+	grunt.registerTask("cs",["sass"]);//注册自由命名的task名称
+}
