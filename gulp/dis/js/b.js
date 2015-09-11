@@ -1,0 +1,1 @@
+function b(){console.log(a_str)}var b_num=2,b_str="gulp";
