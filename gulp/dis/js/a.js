@@ -1,1 +1,0 @@
-function testGulp(){console.log("success")}var num=12,str="testgulp";
