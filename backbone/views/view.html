@@ -15,6 +15,22 @@
 
 	<script>
 		$(function(){
+			var ModelPerons=Backbone.Model.extend({
+				initialize:function(){
+					this.list=[
+					{name:"小红",age:22},
+					{name:"小名",age:24},
+					{name:"李大大",age:18}
+					]
+				}
+			});
+			
+
+			var CollPersons=Backbone.Collection.extend({
+				model:ModelPerons
+			});
+			var persons=new CollPersons();
+			
 			var ViewList=Backbone.View.extend({
 				$el:$("#container"),
 				className:"test",
