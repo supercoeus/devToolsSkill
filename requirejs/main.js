@@ -1,8 +1,8 @@
 require.config({
 	"baseUrl":"public",
 	"paths":{
-		"jquery":["jquery-1.11.3"],
 		"person":["persons"],
+		"jquery":["jquery-1.11.3"],
 		"student":["students"]
 	}
 });

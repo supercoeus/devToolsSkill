@@ -6,10 +6,27 @@
 </head>
 <body>
 	<ul>
-		<li>1.define方法  定义模块  定义独立模块  定义具有相互依赖关系的模块</li>
+		<h3>几个方法</h3>
+		<li>1.define方法 三种模式 定义模块  定义独立模块  定义具有相互依赖关系的模块 <br/>
+			define接收三种方式的参数 1.数据 2.带有返回值的函数 3.具有依赖关系的模块
+			
+		</li>
 		<li>2.require方法  调用模块</li>
 		<li>3.require.config方法  配置require</li>
+		<li>4.生成相对模块的url地址   require.toUrl(./test) => public/test</li>
 	</ul>
+	
+	<ul>
+		<h3>一些重要的小知识点</h3>
+		<li>
+			1.requirejs的加载顺序不确定，但是依赖关系是确定的
+		</li>
+		<li>
+			2.baseUrl如果不设定，那么会默认是引用requirejs的html的路径
+		</li>
+	</ul>
+	
+	
 	<script data-main="main" src="require.js"></script>
 
 	
