@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>underscore练习</title>
+
+	<script src="../public/lib/Underscore.js"></script>
+	<script src="../public/lib/Backbone-1.2.3.js"></script>
+	<script src="../public/lib/jquery-1.11.3.js"></script>
+</head>
+<body>
+
+	<h3>underscore是一个工具集，包含了很多平时做开发的时候常用的一些工具方法<br>
+		同时它的压缩版只有5.7Kb，可以在做一些项目的时候进行引入<br>
+		同时underscore包含了一个轻量版的前端模板，可以实现一些简单的模板嵌套<br>
+		而模板也是underscore中使用率最高的一个模块
+	</h3>
+	<ul>
+		<li>
+			1.当嵌套了包含js语法的时候  怎么理解赋值符的问题  ？ <br>
+			可以看成是字符串的拼接，js代码 html代码 以及赋值符 <br>
+			都需要单独的使用包含符包含起来，才能正确解析 <br>
+		</li>
+		<li>
+			2.没有this的概念，那么对于一个纯数组，没有键名的数据结构， <br>
+			怎么取得数据的名称？
+		</li>
+	</ul>
+	
+	<div id="container"></div>
+	<script id="template" type="text/template">
+		<ul>
+			<% _.each(options,function(item,index){ %>
+				<li data-status="<%= item.status %>" >
+					<input type="checkbox"  >
+ 					<%= item.name %>
+				</li>	
+			<% }); %>
+		</ul>
+	</script>
+	<script>
+		console.log(_());
+		console.log(new _);
+
+		//extend方法 
+		var obj={};
+		var obj1={a:1};
+		var obj2={b:2};
+		_.extend(obj,obj1,obj2);
+		console.log(obj,obj1,obj2);
+
+		//template方法  如果能支持判断以及支持自定义输出内容匹配就好了  
+		var data={options:[{status:"yes",name:"A",age:20},
+					{status:"no",name:"B",age:21},
+					{status:"yes",name:"C",age:22,sex:"femal"}],
+				people:["a","b","c"]
+			};
+		var tmpCompile=_.template($("#template").html());
+		var html=tmpCompile(data);
+		$("#container").html(html);
+
+
+		var obj={name:"wangyu"},str="习大大";
+		//clone方法  clone并不是只做对象的引用  而是新建了一个对象并且进行了深复制
+		var clone_obj=_.clone(obj);
+		var clone_str=_.clone(str);
+		obj.name="wangyu1";
+		console.log(clone_obj,clone_str);
+	</script>
+</body>
+</html>
