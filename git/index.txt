@@ -1,0 +1,56 @@
+﻿http://www.cnblogs.com/tugenhua0707/p/4050072.html
+常见操作
+一：构建仓库，克隆远程仓库
+二：拉取远程分支的更新，并与某个分支合并
+三：创建分支
+四：提交本地更新
+
+常见故障
+
+1：提交失败的时候 需要执行命令(从缓存和硬盘中删除index.lock文件) rm -f .git/index.lock 
+2.当提交或者clone的时候 提示Filename too long时   进入.git/config   在core下添加 longpaths = true 即可，
+  很多配置项都可以在此处进行配置
+
+把本地代码提交到github
+1 git config --global user.name "Your Real Name" 
+2 git config --global user.email you@email.address
+如果传递了 --global 选项，因为Git将总是会使用该信息来处理你在系统中所做的一切操作。如果你希望在一个特定的项目中使用不同的名称或e-mail地址，你可以在该项目中运行该命令而不要--global选项。
+
+3.git add . //添加本地文件到缓存区  最好在add之前先使用 git status 查看文件状态 
+
+4.git commit -m 'Test'  //输入提交的提示信息
+5.git push 主机名 分支名 //提交到远程仓库中
+
+
+
+1.git init                                      初始化一个git仓库
+2.git clone https://github.com/wy2008826/git    克隆一个远程git仓库
+
+3. git remote                                   列出远程主机的名称
+4.git remote rename  原主机名 新主机名          重新命名远程主机的名称
+5.git fetch 主机名 分支名                       获取远程主机上的一个分支
+6.git branch -a    =>查看所有的远程分支         查看远程的分支列表
+
+
+
+7.git pull  主机名  远程分支：本地分支 
+ 如果远程分支是与当前分支合并，
+ 则冒号后面的部分可以省略。                     拉取远程分支与本地分支进行合并
+
+8.touch filename                                在本地创建一个文件
+8.git add 文件名称                              添加本地文件到缓存区
+8.git commit -m  "这里填写提交的注释说明"       添加文件提交的提示说明
+8.git push 主机名 分支名                        提交本地文件  然后输入用户名和密码即可
+
+
+11.git status                                   用于查看本地文件有哪些改动还没有提交
+20.cat 文件名称                                 查看某个文件的具体内容
+
+
+30.关于分支   分支查看 创建、切换、合并
+git branch                                      查看分支
+git branch name                                 创建分支
+git branch –d name                              删除分支
+git checkout name                               切换分支
+git checkout –b name                            创建+切换分支
+git merge name                                  合并某分支到当前分支
