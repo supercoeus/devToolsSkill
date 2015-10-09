@@ -1,4 +1,0 @@
-1.确保已经安装了package control插件
-2.安装view in browser插件
-3.在preference（首选项）- 按键绑定-用户中写入{ "keys": ["ctrl+b"], "command": "open_in_browser" }并保存
-4.输入快捷键ctrl+b成功在浏览器中打开文件
