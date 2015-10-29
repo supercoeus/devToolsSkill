@@ -8,8 +8,14 @@
 	<title>requireJs测试</title>
 </head>
 <body>
-	
+	<ul>
+		<li>
+			<h3>路径问题</h3>
+			<p>子模块中调用其他模块的时候，路径是相对于main的路径</p>
+			<p>一旦模块被定义了别名？在其他模块中引用的时候就只能用别名，而不能用路径名，同时也不能在其他模块中重新定义模块的别名</p>
+		</li>
+	</ul>
 
-	<script data-main="main" src="js/require.js"></script>
+	<script data-main="js/main" src="js/require.js"></script>
 </body>
 </html>
