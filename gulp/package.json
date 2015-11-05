@@ -1,7 +1,7 @@
 {
-  "name": "gulp",
+  "name": "testgulp",
   "version": "1.0.0",
-  "description": "",
+  "description": "test",
   "main": "gulpfile.js",
   "dependencies": {
     "gulp-concat": "^2.6.0",
