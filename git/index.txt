@@ -69,6 +69,10 @@ git merge name                                  合并某分支到当前分支
 git log                                         打印历史commit信息和版本号
 git log --pretty=oneline                        会将打印信息展示在一行中  整齐美观
 
+git reset --hard HEAD^                          回退一个版本
+git reset --hard HEAD~5                         回退五个版本
+git reset --hard commitId的前几位               会退到指定版本
+
 
 
 对一文件的不断更改和提交   会产生很多commit版本信息  git log会记录所有的commit信息
