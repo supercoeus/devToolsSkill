@@ -76,6 +76,11 @@ rm  文件名称                                 删除一个文件   add 和com
 
 在切换版本之前  手头的资料一定要提交commit  不然版本切换会导致存档在本机的改动消失
 
+总结    1. 撤销工作区修改         git checkout -- file
+	    2.撤销暂存区commit        git reset --hard commitId
+	    3.撤销已经push后的提交    
+
+
 
 git log                                         打印当前版本前的commit信息和版本号   用于回退历史
 git log --pretty=oneline                        会将打印信息展示在一行中  整齐美观
