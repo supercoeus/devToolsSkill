@@ -82,9 +82,9 @@ rm  文件名称                                 删除一个文件   add 和com
 
 
 
-git log                                         打印当前版本前的commit信息和版本号   用于回退历史
+git log                                         打印当前版本前的commit信息和版本号   用于回退历史  只打印commit版本
 git log --pretty=oneline                        会将打印信息展示在一行中  整齐美观
-git reflog  --pretty=oneline                    打印所有commit信息 （包含当前版本之前和之后记录）      用于回到未来
+git reflog  --pretty=oneline                    打印所有commit信息 （包含当前版本之前和之后记录  也会打印moving版本 ）      用于回到未来  
 
 												
 git reset --hard HEAD^                          回退一个版本
