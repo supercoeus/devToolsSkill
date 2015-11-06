@@ -1,6 +1,9 @@
 ﻿http://www.cnblogs.com/tugenhua0707/p/4050072.html
 http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000   很细致的教程
 
+最好使用gitbash进行操作   方便且美观
+
+
 常见操作
 一：构建仓库，克隆远程仓库
 二：拉取远程分支的更新，并与某个分支合并
@@ -88,8 +91,9 @@ rm  文件名称                                 删除一个文件   add 和com
 git log                                         打印当前版本前的commit信息和版本号   用于回退历史  只打印commit版本
 git log --pretty=oneline                        会将打印信息展示在一行中  整齐美观
 git reflog  --pretty=oneline                    打印所有commit信息 （包含当前版本之前和之后记录  也会打印moving版本 ）      用于回到未来  
+git log --graph                                 查看分支合并图
+				
 
-												
 git reset --hard HEAD^                          回退一个版本
 git reset --hard HEAD~5                         回退五个版本
 git reset --hard commitId的前几位               会退到指定版本
@@ -125,5 +129,7 @@ git checkout -- file           撤销工作区中对某个文件的修改   对�
 							==   解决冲突      ==
 
 当两个分支上的文件不同，试图进行合并的时候，如果文件的相同地方存在冲突，怎么解决？
+merge后手动解决掉分支  然后提交即可
 
+git log --graph   查看分支合并图
 
