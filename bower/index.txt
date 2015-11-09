@@ -1,0 +1,7 @@
+
+
+bower init                  创建一个bower.json文件，记录bower的依赖和安装状态
+bower info jquery           查询jquery的所有版本信息，从网上拉取的，非本地
+bower list                  查询本地的所有安装列表，包括版本信息
+
+
