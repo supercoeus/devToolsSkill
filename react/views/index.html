@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>reactJs练习</title>
+	
+	<script src="../public/lib/react.js"></script>
+	<script src="../public/lib/JSXTransformer.js"></script>
+	
+</head>
+<body>
+	<div id="container">
+		
+	</div>
+	<script  type="text/jsx">
+		var names=["习大大","彭麻麻","王大师","哈哈哈"];
+		React.render(
+			<div>{
+					names.map(function(item,index){
+						return <li> {item} </li>;
+					})
+				}
+			</div>
+		,document.getElementById("container"));
+	</script>
+</body>
+</html>
