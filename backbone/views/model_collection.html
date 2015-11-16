@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>model学习</title>
+	<script src="../public/lib/Underscore.js"></script>
+	<script src="../public/lib/Backbone-1.2.3.js"></script>
+	<script src="../public/lib/jquery-1.11.3.js"></script>
+
+	<style>
+		li{margin:10px 0;}
+	</style>
+</head>
+<body>
+	<h3>model中常用的方法</h3>
+	<ul>
+		<li>
+			1.extend方法 (注意model中已经包含了events里面的所有方法了)
+		</li>
+		<li>
+			2.set方法会触发change等事件  initialize初始化的时候新增的方法<br>
+			和set增加的属性位置不一致的 set设置的位于attributes里面  <br>
+			在new中传递的参数也会被set到attributes中
+		</li>
+		<li>
+			3.get方法只能获取到attributes里面的属性
+		</li>
+	</ul>
+
+
+	<script>
+		var  Person=Backbone.Model.extend({
+			initialize:function(){
+				this.name="习大大";
+			},
+			urlRoot:"book/"
+		});
+
+		var person=new Person({
+			a:1
+		});
+		console.log("person model实例对象",person);
+		
+		person.on("change:color",function(model,value,options){
+			console.log("change:color 回调函数的参数",arguments);
+			$("body").css({"color":value});
+		});
+		person.on("change",function(model,options){
+			console.log("change 回调函数的参数",arguments);
+		});
+		person.set({age:22});//set会触发事件
+		person.set({color:"#f33"});//set会触发事件
+		person.set({color:"#aaa"});//set会触发事件
+
+		//get方法
+		console.log("get 可获取到的参数",person.get("name"),person.get("a"));
+		//has方法
+		console.log("has has的使用方法",person.has("name"),person.has("a"));
+
+		//url方法  会返回urlRoot的值
+		console.log("url ",person.url());
+
+		//clone 返回和该模型具有相同属性的新实例
+		console.log("clone 使用方法和返回结果",person.clone());
+
+		//isNew 
+		console.log("isNew 模型无id即为new",person.isNew());
+
+		//hasChanged set事件会触发change 记录最后一次set后的结果
+		console.log("hasChanged",person.hasChanged("name"),person.hasChanged("a"),person.hasChanged("color"),person.hasChanged());
+
+		//changedAttributes 记录最后一次set后的结果
+		console.log("changedAttributes",person.changedAttributes());
+
+		//previous 记录最后一次set之前的值
+		console.log("previous",person.previous("name"),person.previous("color"));
+
+		//previousAttributes 
+		console.log("previousAttributes",person.previousAttributes());
+
+		var Book=Backbone.Model.extend({
+			name:"十万个为什么"
+		});
+		var book=new Book({
+			year:1990
+		});
+
+
+		var Collection=Backbone.Collection.extend({
+			models:person
+		});
+
+		var collection=new Collection({
+			models:[person]
+		});
+		console.log("collection",collection);
+
+		//models
+		console.log("models ",collection.models);
+
+
+	</script>
+</body>
+</html>

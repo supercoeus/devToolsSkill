@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,minimum-scale=1.0, maximum-scale=1.0">
+
+	<title>requireJs测试</title>
+</head>
+<body>
+	<ul>
+		<li>
+			<h3>路径问题</h3>
+			<p>路径会默认是data-main中的路径，如果没有，需要指定baseUrl,所有模块以及加载都是基于该路径来引用</p>
+			<p>子模块中调用其他模块的时候，路径是相对于main的路径</p>
+			<p>一旦模块被定义了别名？在其他模块中引用的时候就只能用别名，而不能用路径名，同时也不能在其他模块中重新定义模块的别名</p>
+		</li>
+	</ul>
+
+	<script data-main="js/main" src="js/require.js"></script>
+</body>
+</html>

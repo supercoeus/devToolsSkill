@@ -1,0 +1,3 @@
+.gitignore文件的创建
+
+通过另存为可以新建.gitignore文件  

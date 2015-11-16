@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>backbone学习</title>
+	<script src="../public/lib/Underscore.js"></script>
+	<script src="../public/lib/Backbone-1.2.3.js"></script>
+	<script src="../public/lib/jquery-1.11.3.js"></script>
+</head>
+<body>
+	
+	<div id="main"></div>
+
+	<script>
+		$(function(){
+			//这样设计model和创建一个对象有什么区别？和创建一个App对象有什么区别？
+			//Backbone.Model相当于会有默认的方法预置，extend扩展model实例的方法
+			var User=Backbone.Model.extend({
+				initialize:function(name){//初始化函数
+					this.name=name||"wangyu"
+				},
+				check:function(){
+
+				},
+				age:"22"
+			});
+
+			var wy=new User();
+			wy.set({"city":"杭州hanghzou"});
+			console.log(wy.name,wy.age,wy.city,wy.get("city"),wy.attributes);
+			//通过set设置的属性只能通过get方法获取  
+			//set方法设置的属性挂载在attributes属性上
+			
+
+			//集合的概念
+			var Users=Backbone.Collection.extend({
+				model:User
+			});
+
+			//为集合添加模型 有多种方法 一次性添加 或者通过add方法添加
+			var user_collection=new Users({name:"wangyu1"},{name:"wangyu2"});
+			
+			user_collection.bind("add",function(event){
+				console.log(event);
+			});
+			user_collection.bind("remove",function(event){
+				console.log(event);
+			});
+
+
+			user_collection.add({name:"wangyu3"});
+			//console.log(user_collection);
+
+
+
+			var Persons=Backbone.View.extend({
+
+				initialize:function(){
+					this.render();
+				},
+				render:function(){
+					$("#main").html("123xss");
+				}
+			}); 
+
+			//var persons=new Persons();
+		})
+	</script>
+</body>
+</html>
