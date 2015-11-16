@@ -1,1 +1,0 @@
-React.render("123",document.getElementById("container"));
