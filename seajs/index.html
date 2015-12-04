@@ -15,6 +15,7 @@
 
 	<p class="fc-danger">对于非模块化的代码，或者挂载到全局对象上的代码如jquery需要进行包装，才能正确的引用得到 <br/>
 		<p>jquery是使用amd来返回的 所以使用require来引用就没有问题</p>
+		<p>require是依赖前置，而seajs是就近引用</p>
 		<code>
 			define(function(){
 
