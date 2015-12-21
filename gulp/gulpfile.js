@@ -1,3 +1,9 @@
+//css压缩      gulp-minify-css
+//sass编译     gulp-scss
+//js压缩       gulp-uglify
+//重命名       gulp-rename
+
+
 var gulp=require("gulp");
 //需要安装gulp-load-plugins在本地项目中
 var gulpLoadPlugins=require("gulp-load-plugins");
