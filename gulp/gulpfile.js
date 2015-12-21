@@ -1,15 +1,23 @@
 //css压缩      gulp-minify-css
 //sass编译     gulp-scss
 //js压缩       gulp-uglify
-//重命名       gulp-rename
+//重命名       gulp-rename   包括路径  文件名  扩展名   都可以自定义最终结果
+
+
+//如何获取plugins下面对应的插件？
+//如何重命名目标文件？
+//如何添加md5版本号?
+//如何保持目录一致? 如何把不同深度的目录中的文件输出到同一个目录下
+
 
 
 var gulp=require("gulp");
+var rename=require("gulp-rename");
 //需要安装gulp-load-plugins在本地项目中
 var gulpLoadPlugins=require("gulp-load-plugins");
 
 var plugins=gulpLoadPlugins();
-
+var minifyCss=plugins.rename(plugins["minify-css"],"minifyCss");
 
 // gulp.task("minify",function(){
 // 	gulp.src("src/js/*.js")
@@ -35,8 +43,23 @@ var plugins=gulpLoadPlugins();
 gulp.task("scss",function(){
 	gulp.src(["src/**/*.scss"])
 	.pipe(plugins.scss())
+	.pipe(minifyCss())
 	.pipe(gulp.dest("dest"));
 });
+
+	//sass模块
+gulp.task("rename",function(){
+	gulp.src(["src/**/*.scss"])
+	.pipe(plugins.scss())
+	.pipe(rename(function(path){
+		// path.dirname+="/ceshi";在每一个目标文件外面加一层目录  一般不会用到
+		// path.basename+=".min";//文件名
+		path.extname=".min.css";//扩展名
+	}))
+	.pipe(gulp.dest("rename"));
+});
+
+
 
 gulp.task("scssA",function(){
 	gulp.src(["src/***.scss"])
