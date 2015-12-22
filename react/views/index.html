@@ -11,6 +11,9 @@
 	
 </head>
 <body>
+	<p>
+		组件名称首字母必须大写，
+	</p>
 	<div id="container">
 		
 	</div>
@@ -18,19 +21,31 @@
 	<div id="lists">
 		
 	</div>
-	
+
 	<script  type="text/jsx">
 		var names=["习大大","彭麻麻","王大师","哈哈哈"];
 
-		var lists=React.createClass({
+		var Lists=React.createClass({
 			getInitialState:function(){
 				return {
+					status:false,
 					color:"#f33"
 				}
 			},
+			handleClick:function(){
+				console.log(this.state.status,this);
+				this.state.status=!this.state.status;
+				if(this.state.status){
+					this.state.color="#3f3"
+				}
+				else{
+					this.state.color="#f33"
+				}
+				
+			},
 			render:function(){
-				return <div>
-				{this.props.lists}213
+				return <div style={{color:this.state.color}} onClick={this.handleClick}>
+				{this.props.datavue}{this.state.color}
 				</div>;
 			}
 		});
@@ -45,7 +60,8 @@
 
 		,document.getElementById("container"));
 
-		ReactDOM.render(<lists datavue="123" />,document.getElementById("lists"));
+
+		ReactDOM.render(<Lists datavue="123" />,document.getElementById("lists"));
 
 
 	</script>
