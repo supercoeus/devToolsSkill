@@ -18,10 +18,16 @@
 	<div id="lists">
 		
 	</div>
+	
 	<script  type="text/jsx">
 		var names=["习大大","彭麻麻","王大师","哈哈哈"];
 
 		var lists=React.createClass({
+			getInitialState:function(){
+				return {
+					color:"#f33"
+				}
+			},
 			render:function(){
 				return <div>
 				{this.props.lists}213
