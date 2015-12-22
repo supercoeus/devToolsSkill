@@ -5,24 +5,43 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,minimum-scale=1.0, maximum-scale=1.0">
 	<title>reactJs练习</title>
-	<script src="../public/js/lib/react.js"></script>
+	<script src="../public/js/lib/react.min.js"></script>
 	<script src="../public/js/lib/JSXTransformer.js"></script>
+	<script src="../public/js/lib/react-dom.js"></script>
 	
 </head>
 <body>
 	<div id="container">
 		
 	</div>
+
+	<div id="lists">
+		
+	</div>
 	<script  type="text/jsx">
 		var names=["习大大","彭麻麻","王大师","哈哈哈"];
-		React.render(
+
+		var lists=React.createClass({
+			render:function(){
+				return <div>
+				{this.props.lists}213
+				</div>;
+			}
+		});
+
+		ReactDOM.render(
 			<div>{
 					names.map(function(item,index){
-						return <li> {item} </li>;
+						return <li>{index+1}:{item} </li>;
 					})
 				}
 			</div>
+
 		,document.getElementById("container"));
+
+		ReactDOM.render(<lists datavue="123" />,document.getElementById("lists"));
+
+
 	</script>
 </body>
 </html>
