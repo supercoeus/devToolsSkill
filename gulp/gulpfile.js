@@ -4,7 +4,8 @@
 //重命名                            gulp-rename   包括路径  文件名  扩展名   都可以自定义最终结果
 //合并 传递合并后后的文件名         gulp-concat  
 //md5    	                        gulp-rev 
-
+//编译scss无需刷新浏览器            browser-sync
+//启动一个当前路径的服务器环境      browser-sync
 
 
 //如何获取plugins下面对应的插件？
@@ -22,6 +23,9 @@ var gulpLoadPlugins=require("gulp-load-plugins");
 var plugins=gulpLoadPlugins();
 var minifyCss=require("gulp-minify-css");
 var revCollector=require("gulp-rev-collector");
+var browserSync=require("browser-sync");
+var reload=browserSync.reload;
+
 
 /****src**
 	1.支持多路径的数组集合
@@ -42,7 +46,8 @@ gulp.task("scss",function(){
 	gulp.src(["src/**/*.scss"])
 	.pipe(plugins.scss())
 	.pipe(minifyCss())
-	.pipe(gulp.dest("dest"));
+	.pipe(gulp.dest("dest"))
+	.pipe(reload({ stream:true }));
 });
 
 //js压缩
@@ -138,7 +143,19 @@ gulp.task("all",["scss","scssA","scssB","scssNot"]);
 
 //watch 和run方法
 gulp.task("watch",function(){
-	gulp.watch("src/css/**/*.scss",function(){
-		gulp.run("scss");
+	gulp.watch("src/css/**/*.scss",["scss"],function(){
+		
 	});
+});
+
+
+// 启动一个server 监视 Sass 文件的改动，如果发生变更，运行 'sass' 任务，并且重载文件
+gulp.task('serve', function() {
+  browserSync({
+    server: {
+      baseDir: './'
+    }
+  });
+
+  gulp.run(["watch"]);
 });
