@@ -21,7 +21,7 @@ var gulpLoadPlugins=require("gulp-load-plugins");
 
 var plugins=gulpLoadPlugins();
 var minifyCss=require("gulp-minify-css");
-
+var revCollector=require("gulp-rev-collector");
 
 /****src**
 	1.支持多路径的数组集合
@@ -70,10 +70,23 @@ gulp.task("rename",function(){
 
 //md5   会自动把md5时间戳放在文件名称后面  
 // md5是根据内容来设置的   如果内容不变 MD5值不变  内容回撤 md5值也会回撤 
+//这里有一个小坑  就是css的名字最好不要是a.css这样的   因为a-32d11dda.css会最终被替换为a-32d11dda-32d11dda.css  导致有两个md5版本号
+
 gulp.task("md5",function(){
 	gulp.src(["src/css/**/*.scss"])
+	.pipe(plugins.scss())
 	.pipe(plugins.rev())
 	.pipe(gulp.dest("md5"))
+	.pipe(plugins.rev.manifest())//生成一个版本号替换文件的json文件
+	.pipe(gulp.dest('./rev')); //保存到某一个目标路径下
+});
+
+
+//替换目标文件的路径引用  替换MD5版本号
+gulp.task("revCollector",function(){
+	gulp.src(["./rev/rev-manifest.json","./views/**/*.html"])
+	.pipe(revCollector())
+	.pipe(gulp.dest("./views/"))
 });
 
 
