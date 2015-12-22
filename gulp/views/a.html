@@ -1,12 +1,34 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,minimum-scale=1.0, maximum-scale=1.0">
 	<title>a</title>
 	<link rel="stylesheet" href="../md5/a-05d1c39deb-9a19212dac.css">
 	<link rel="stylesheet" href="../dest/css/a.css">
 </head>
 <body>
-	dfewfewf
+	<button id="test">点击测试</button>
+
+	<p id="container">
+		
+	</p>
+	<script src="../public/js/lib/jquery-2.1.4.js"></script>
+	<script>
+		$(function(){
+			$("#test").on("click",function(){
+				$.ajax({
+					type:"GET",
+					url:"../public/js/test.json",
+					dataType:"json",
+					success:function(data){
+						$("#container").html(JSON.stringify(data));
+						console.log(data);
+					}
+				});
+			})
+		});
+	</script>
 </body>
 </html>
