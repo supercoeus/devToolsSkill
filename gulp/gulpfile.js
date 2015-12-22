@@ -1,14 +1,17 @@
-//css压缩      gulp-minify-css
-//sass编译     gulp-scss
-//js压缩       gulp-uglify
-//重命名       gulp-rename   包括路径  文件名  扩展名   都可以自定义最终结果
+//css压缩                           gulp-minify-css
+//sass编译                          gulp-scss
+//js压缩                            gulp-uglify
+//重命名                            gulp-rename   包括路径  文件名  扩展名   都可以自定义最终结果
+//合并 传递合并后后的文件名         gulp-concat  
+//md5    	                        gulp-rev 
+
 
 
 //如何获取plugins下面对应的插件？
 //如何重命名目标文件？
 //如何添加md5版本号?
-//如何保持目录一致? 如何把不同深度的目录中的文件输出到同一个目录下
-
+//如何保持目录一致? 
+//如何把不同深度的目录中的文件输出到同一个目录下
 
 
 var gulp=require("gulp");
@@ -17,13 +20,8 @@ var rename=require("gulp-rename");
 var gulpLoadPlugins=require("gulp-load-plugins");
 
 var plugins=gulpLoadPlugins();
-var minifyCss=plugins.rename(plugins["minify-css"],"minifyCss");
+var minifyCss=require("gulp-minify-css");
 
-// gulp.task("minify",function(){
-// 	gulp.src("src/js/*.js")
-// 	.pipe(plugins.uglify())
-// 	.pipe(gulp.dest("dis/js"))
-// });
 
 /****src**
 	1.支持多路径的数组集合
@@ -39,7 +37,7 @@ var minifyCss=plugins.rename(plugins["minify-css"],"minifyCss");
 
 */
 
-	//sass模块
+//scss编译  css压缩
 gulp.task("scss",function(){
 	gulp.src(["src/**/*.scss"])
 	.pipe(plugins.scss())
@@ -47,11 +45,20 @@ gulp.task("scss",function(){
 	.pipe(gulp.dest("dest"));
 });
 
-	//sass模块
+//js压缩
+gulp.task("jsMin",function(){
+	gulp.src("src/js/*.js")
+	.pipe(plugins.uglify())
+	.pipe(gulp.dest("public/js/"))
+});
+
+
+
+//重命名：路径-文件名-后缀名
 gulp.task("rename",function(){
 	gulp.src(["src/**/*.scss"])
 	.pipe(plugins.scss())
-	.pipe(rename(function(path){
+	.pipe(plugins.rename(function(path){
 		// path.dirname+="/ceshi";在每一个目标文件外面加一层目录  一般不会用到
 		// path.basename+=".min";//文件名
 		path.extname=".min.css";//扩展名
@@ -61,22 +68,44 @@ gulp.task("rename",function(){
 
 
 
+//md5   会自动把md5时间戳放在文件名称后面  
+// md5是根据内容来设置的   如果内容不变 MD5值不变  内容回撤 md5值也会回撤 
+gulp.task("md5",function(){
+	gulp.src(["src/css/**/*.scss"])
+	.pipe(plugins.rev())
+	.pipe(gulp.dest("md5"))
+});
+
+
+//把不同深度目录的文件编译到同一个目录下  通过更改路径名称来修改
+gulp.task("inOne",function(){
+	gulp.src(["src/css/**/*.scss"])
+	.pipe(plugins.scss())
+	.pipe(plugins.rename(function(path){
+		path.dirname="./inOne";
+	}))
+	.pipe(gulp.dest("./"));
+});
+
+
+//编译 当前目录下的所有scss文件
 gulp.task("scssA",function(){
-	gulp.src(["src/***.scss"])
+	gulp.src(["src/css/***.scss"])
 	.pipe(plugins.scss())
 	.pipe(gulp.dest("destA"));
 });
 
 
 gulp.task("scssB",function(){
-	gulp.src(["src/*.scss"])
+	gulp.src(["src/css/*.scss"])
 	.pipe(plugins.scss())
 	.pipe(gulp.dest("destB"));
 });
 
 
+//排除 部分文件
 gulp.task("scssNot",function(){
-	gulp.src(["src/**/*.scss","!src/*.scss"])
+	gulp.src(["src/css/**/*.scss","!src/css/*.scss"])
 	.pipe(plugins.scss())
 	.pipe(gulp.dest("destNot"));
 });
@@ -96,7 +125,7 @@ gulp.task("all",["scss","scssA","scssB","scssNot"]);
 
 //watch 和run方法
 gulp.task("watch",function(){
-	gulp.watch("src/**/*.scss",function(){
+	gulp.watch("src/css/**/*.scss",function(){
 		gulp.run("scss");
 	});
 });
