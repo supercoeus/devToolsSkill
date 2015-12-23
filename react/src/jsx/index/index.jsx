@@ -36,6 +36,9 @@
 				});
 			}
 		},
+		handleClickSub:function(){
+			console.log(21323);
+		},
 		componentDidMount:function(){//组件被加载到页面上后
 			var _self=this;
 			window.addEventListener("resize",this.handleResize);
@@ -51,15 +54,22 @@
 			// alert("did");
 		},
 		render:function(){
-			
-			return <div style={{color:this.state.color}} onClick={this.handleClick}>
+			var self=this;
+			return (<div style={{color:this.state.color}} onClick={this.handleClick}>
 			<p>点击我 </p>
 			<p>{this.state.now.getHours()+":"+this.state.now.getMinutes()+":"+this.state.now.getSeconds()}</p>
 			{this.props.datavalue}
 			<br/><br/>
 			<p>更改窗口大小动态显示宽度 :{this.state.wdW}</p>
-			
-			</div>;
+			{
+				this.props.options.map(function(item,index){
+
+					return (<li onClick={this.handleClickSub}>
+							<span>{index}: {item}</span>
+						</li>)
+				}.bind(this))
+			}
+			</div>)
 		}
 	});
 
@@ -76,7 +86,7 @@
 	,document.getElementById("container"));
 
 
-	React.render(<Lists datavalue="123" />,document.getElementById("lists"));
+	React.render(<Lists datavalue="123" options={["apple","window","android"]}/>,document.getElementById("lists"));
 
 	setTimeout(function(){
 		// React.unmountComponentAtNode(document.getElementById("lists"));
