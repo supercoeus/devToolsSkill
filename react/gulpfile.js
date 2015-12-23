@@ -10,7 +10,7 @@ gulp.task("jsx",function(){
 
 
 gulp.task("watchJSX",function(){
-	gulp.watch("./src/js/jsx/**/*.jsx",function(){
+	gulp.watch("./src/jsx/**/*.jsx",function(){
 		gulp.run(["jsx"]);
 	})
 })

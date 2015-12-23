@@ -6,8 +6,15 @@
 		getInitialState:function(){
 			return {
 				status:false,
-				color:"#f33"
+				color:"#f33",
+				wdW:window.innerWidth,
+				now:new Date()
 			}
+		},
+		handleResize:function(){
+			this.setState({
+				wdW:window.innerWidth
+			});
 		},
 		handleClick:function(){
 			this.setState({
@@ -17,21 +24,39 @@
 				datavalue:Math.random()
 			});
 
-			console.log(this.state);
+			// console.log(this.state);
 			if(this.state.status){
-				this.setState({
-					color:"#3f3"
-				});
-			}
-			else{
 				this.setState({
 					color:"#f33"
 				});
 			}
+			else{
+				this.setState({
+					color:"#39f"
+				});
+			}
+		},
+		componentDidMount:function(){//组件被加载到页面上后
+			var _self=this;
+			window.addEventListener("resize",this.handleResize);
+			setInterval(function(){
+				_self.setState({
+					now:new Date()
+				});
+			},1000);
+
+		},
+		componentWillUnMount:function(){//
+			window.removeEventListener("resize",this.handleResize);
+			// alert("did");
 		},
 		render:function(){
 			return <div style={{color:this.state.color}} onClick={this.handleClick}>
+			<p>点击我 </p>
+			<p>{this.state.now.getHours()+":"+this.state.now.getMinutes()+":"+this.state.now.getSeconds()}</p>
 			{this.props.datavalue}
+			<br/><br/>
+			<p>更改窗口大小动态显示宽度:{this.state.wdW}</p>
 			</div>;
 		}
 	});
