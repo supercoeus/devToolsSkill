@@ -6,7 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,minimum-scale=1.0, maximum-scale=1.0">
 	<title>reactJs练习</title>
 	<script src="../public/js/lib/react.min.js"></script>
-	
+	<style>
+		.border{border:1px solid #ccc;margin-top:10px;}
+	</style>
 	
 </head>
 <body>
@@ -14,17 +16,25 @@
 	<p>
 		组件名称首字母必须大写，
 	</p>
+	<p>
+		render的return里面所有html需要包裹在一个Div中
+	</p>
+	<div class="border">
+		<p>
+			对于不是react的组件，需要怎么添加事件和交互，用jquery？
+		</p>
+	</div>
 	<h4>可以触发重绘的方法有哪些：</h4>
 	<ul>
 		<li>1.setState ：更改state状态 </li>
 		<li>2.setProps ：更改props状态 </li>
 		<li>3.</li>
 	</ul>
-	<div id="container">
+	<div id="container" class="border">
 		
 	</div>
 
-	<div id="lists">
+	<div id="lists" class="border">
 		
 	</div>
 	<script  src="../public/js/jsx-trs/index/index.js"></script>

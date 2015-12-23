@@ -51,18 +51,22 @@
 			// alert("did");
 		},
 		render:function(){
+			
 			return <div style={{color:this.state.color}} onClick={this.handleClick}>
 			<p>点击我 </p>
 			<p>{this.state.now.getHours()+":"+this.state.now.getMinutes()+":"+this.state.now.getSeconds()}</p>
 			{this.props.datavalue}
 			<br/><br/>
-			<p>更改窗口大小动态显示宽度:{this.state.wdW}</p>
+			<p>更改窗口大小动态显示宽度 :{this.state.wdW}</p>
+			
 			</div>;
 		}
 	});
 
 	React.render(
-		<div>{
+		<div>
+		<h3>测试循环</h3>
+		{
 				names.map(function(item,index){
 					return <li>{index+1}:{item} </li>;
 				})
@@ -74,4 +78,8 @@
 
 	React.render(<Lists datavalue="123" />,document.getElementById("lists"));
 
+	setTimeout(function(){
+		// React.unmountComponentAtNode(document.getElementById("lists"));
+		
+	},5000);
 })();

@@ -51,18 +51,22 @@
 			// alert("did");
 		},
 		render:function(){
+			
 			return React.createElement("div", {style: {color:this.state.color}, onClick: this.handleClick}, 
 			React.createElement("p", null, "点击我 "), 
 			React.createElement("p", null, this.state.now.getHours()+":"+this.state.now.getMinutes()+":"+this.state.now.getSeconds()), 
 			this.props.datavalue, 
 			React.createElement("br", null), React.createElement("br", null), 
-			React.createElement("p", null, "更改窗口大小动态显示宽度:", this.state.wdW)
+			React.createElement("p", null, "更改窗口大小动态显示宽度 :", this.state.wdW)
+			
 			);
 		}
 	});
 
 	React.render(
 		React.createElement("div", null, 
+		React.createElement("h3", null, "测试循环"), 
+		
 				names.map(function(item,index){
 					return React.createElement("li", null, index+1, ":", item, " ");
 				})
@@ -74,4 +78,8 @@
 
 	React.render(React.createElement(Lists, {datavalue: "123"}),document.getElementById("lists"));
 
+	setTimeout(function(){
+		// React.unmountComponentAtNode(document.getElementById("lists"));
+		
+	},5000);
 })();
