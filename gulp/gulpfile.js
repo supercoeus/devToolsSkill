@@ -90,10 +90,13 @@ gulp.task("md5",function(){
 });
 
 
-//替换目标文件的路径引用  替换MD5版本号
+//替换目标文件的路径引用  替换MD5版本号  由于manifest文件中始终是a.css a-dewd3ed32.css   所以只会在第一次的时候进行替换  
+//一旦替换完成后  后面就不会再次替换了 而且 每次更改文件名称后  并不会覆盖原文件  所以需要先删除文件  这样就必须保证编译后的文件夹必须是纯净版的
 gulp.task("revCollector",function(){
+	var now=new Date()*1;
 	gulp.src(["./rev/rev-manifest.json","./views/**/*.html"])
 	.pipe(revCollector())
+	// .pipe(plugins.replace(/(\.css)/g,".css?time="+now))
 	.pipe(gulp.dest("./views/"))
 });
 
