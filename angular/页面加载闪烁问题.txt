@@ -1,0 +1,16 @@
+
+
+<ul ng-controller="mytest" >
+  <li ng-repeat="people in group" ng-bind="people.name"><li>
+</ul>
+
+app=angular.module("App",[]);
+
+App.controller("mytest",function($scope){
+  $scope.group=[
+    {"name":"xiaohong","age":20}
+  ]
+});
+
+
+使用ng-bind可已很好的解决加载闪烁的问题

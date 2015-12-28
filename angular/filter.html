@@ -1,0 +1,26 @@
+
+着重关注下 1.过滤器的定义  2. 传参数  3.如何把过滤器注入controller
+
+<div ng-controller="ctrlPersons">
+     <p class="chart_tit color-primary C" >{{name | addStr}}</p>
+</div>
+
+
+//定义一个modul
+var App=angular.module("app",[]);
+
+//定义一个过滤器
+slider.filter("addStr",function(){
+	return function(input){
+	      return input+"123";
+
+	}
+			
+});//input为过滤前的值
+
+
+//定义一个controller并把过滤器注入进去，同时可以在过滤器中传入参数
+slider.controller("ctrlPersons",["$scope",function($scope,addStr){
+        //数据中心
+	 $scope.name="习大大";
+}]);
