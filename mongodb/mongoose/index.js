@@ -1,7 +1,7 @@
 var mongoose=require("mongoose");
 
 //链接user表  
-var db=mongoose.createConnection("mongodb://127.0.0.1/test");
+var db=mongoose.createConnection("mongodb://127.0.0.1/user");
 
 db.on("error",function(error){
 	console.log(error);
@@ -18,7 +18,7 @@ var userSchema=new mongoose.Schema({
 });
 
 //将schema发布为model  相当于在user表中创建了abd集合
-var userModel=db.model("abd",userSchema);
+var userModel=db.model("users",userSchema);
 
 // 如果该model已经发布 ，则可以直接通过名字索引到，如下
 // var userModel=db.model("Person");
@@ -28,5 +28,13 @@ var userModel=db.model("abd",userSchema);
 
 var userEntity=new userModel({"name":"习大大1","age":57});
 
+var count=10;
+var baeAge=20;
+for(var i=0;i<count;i++){
+	var name="王宇"+i;
+	var age=baeAge+i;
+	var people=new userModel({"name":name,"age":age});
+	people.save();
+}
 userEntity.save();
-
+// people1.save();
