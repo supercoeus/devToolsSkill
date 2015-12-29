@@ -1,6 +1,6 @@
 var mongoose=require("mongoose");
 
-//链接user表  
+//链接user表  一个文件可以访问多个数据库  以及数据库中的多个集合
 var db=mongoose.createConnection("mongodb://127.0.0.1/user");
 
 db.on("error",function(error){
@@ -38,3 +38,21 @@ for(var i=0;i<count;i++){
 }
 userEntity.save();
 // people1.save();
+
+
+
+var dbA=mongoose.createConnection("mongodb://127.0.0.1/other");
+var citySchema=new mongoose.Schema({
+	city:String,
+	year:Number
+});
+
+var cityModel=dbA.model("city",citySchema);
+var baseYear=2000;
+for(var i=0;i<5;i++){
+
+	var city="杭州"+i;
+	var year=baseYear+i;
+	var cityEntity=new cityModel({city:city,year:year});
+	cityEntity.save();
+}
