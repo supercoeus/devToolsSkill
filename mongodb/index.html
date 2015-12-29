@@ -23,6 +23,32 @@
 		</li>
 	</ul>
 
+	<br/>
+	<ul>
+		<h3>find操作</h3>
+		<li>1.
+			<p>>  :($gt) bigger than ,db.user.find({"age":{$gt:22}})</p>
+			<p>>= :($gte),</p>
+			<p>< :($lt),</p>
+			<p><= :($lte),</p>
+			<p>!= :($ne),</p>
+			<p>== :</p>
 
+		</li>
+		<li>2
+			<p>and:  db.user.find({"name":"xidada","age":55})</p>
+			<p>or:  db.user.find({$or:[{"address.provience":"杭州"},{"address.provience":"河南"}]})</p>
+			<p>in: db.user.find({"name":{$in:["xidada","pengmama"]}})</p>
+			<p>notin:  db.user.find({"name":{$nin:["xidada","pengmama"]}})</p>
+		</li>
+		<li>3.正则表达式 查询name的开头为w  结尾为u的数据
+			<p>db.user.find({"name":/^w/,"name":/u$/})</p>
+		</li>
+		<li>4.$where
+			<p>
+				db.user.find({$where:function(){return this.name=="xidada"}})
+			</p>
+		</li>
+	</ul>
 </body>
 </html>
