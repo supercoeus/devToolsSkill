@@ -52,5 +52,26 @@
 			</p>
 		</li>
 	</ul>
+
+	<ul>
+		<h3>update操作   更改某一个字段对应的条目的其他字段的值（局部更新，只更新查到后的第一条数据）</h3>
+		<li>$inc  &nbsp 在原有基础上新增
+			<p>
+				db.user.update({name:"习大大"},{$inc:{age:30}})
+			</p>
+		</li>
+		<li>$set  &nbsp 重置
+			<p>
+				db.user.update({name:"习大大"},{$set:{age:30}})
+			</p>
+		</li>
+		<li>upsert  update的第三个参数   默认false   true:如果没有就新增一条
+			db.user.update({name:"习大大"},{$set:{age:30}},true)
+		</li>
+		<li>all  update的第四个参数   默认false   true:更改所有数据 而不是第一条
+			db.user.update({name:"习大大"},{$set:{age:30}},true,true)
+		</li>
+
+	</ul>
 </body>
 </html>
