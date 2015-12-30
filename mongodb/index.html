@@ -23,6 +23,12 @@
 		<li>
 			4.运行mongo  输入mongo命令  链接到数据库
 		</li>
+		<li>
+			5. use dbname  使用某一个数据库
+		</li>
+		<li>
+			6. db.collectionName.indert() 在当前数据库中的collectionname中执行插入操作
+		</li>
 	</ul>
 
 	<br/>
@@ -72,6 +78,31 @@
 			db.user.update({name:"习大大"},{$set:{age:30}},true,true)
 		</li>
 
+	</ul>
+
+
+	<ul>
+		<h3>聚合操作</h3>
+		<li>1.count    ：查询条数
+			<p>a.   db.user.count() :user表中的总数据条数</p>
+			<p>b.   db.user.count({name:"习大大"}) ：user表中name=习大大的条数</p>
+		</li>
+		<li>2.distinct   ：查找确切的字段 并返回最终的数据的数组集合
+			<p>
+				a.  db.user.distinct("name")
+			</p>
+		</li>
+		<li>3.group
+			<p>
+				a.  db.user.group({
+					key:"age",
+					initial:{person:[]},
+					reduce:function(doc,out){
+						out.person.push(doc.name)
+					}
+				})
+			</p>
+		</li>
 	</ul>
 </body>
 </html>

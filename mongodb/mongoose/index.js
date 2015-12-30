@@ -41,17 +41,17 @@ userEntity.save();
 
 
 
-var dbA=mongoose.createConnection("mongodb://127.0.0.1/other");
+var dbA=mongoose.createConnection("mongodb://127.0.0.1/random");
 var citySchema=new mongoose.Schema({
 	city:String,
 	year:Number
 });
 
-var cityModel=dbA.model("city",citySchema);
+var cityModel=dbA.model("number",citySchema);
 var baseYear=2000;
-for(var i=0;i<5;i++){
+for(var i=0;i<100000;i++){
 
-	var city="杭州"+i;
+	var city=Math.random().toFixed(5)*100000;
 	var year=baseYear+i;
 	var cityEntity=new cityModel({city:city,year:year});
 	cityEntity.save();
