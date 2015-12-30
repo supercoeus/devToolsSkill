@@ -1,0 +1,27 @@
+﻿2015-12-30T10:27:36.757+0800 I CONTROL  ***** SERVER RESTARTED *****
+2015-12-30T10:27:36.766+0800 I STORAGE  [initandlisten] exception in initAndListen: 29 Data directory ./da not found., terminating
+2015-12-30T10:27:36.766+0800 I CONTROL  [initandlisten] dbexit:  rc: 100
+2015-12-30T10:27:46.613+0800 I CONTROL  ***** SERVER RESTARTED *****
+2015-12-30T10:27:46.629+0800 I STORAGE  [initandlisten] exception in initAndListen: 29 Data directory ./da not found., terminating
+2015-12-30T10:27:46.630+0800 I CONTROL  [initandlisten] dbexit:  rc: 100
+2015-12-30T10:27:58.007+0800 I CONTROL  ***** SERVER RESTARTED *****
+2015-12-30T10:27:58.019+0800 I JOURNAL  [initandlisten] journal dir=./da\journal
+2015-12-30T10:27:58.020+0800 I JOURNAL  [initandlisten] recover : no journal files present, no recovery needed
+2015-12-30T10:27:58.028+0800 I JOURNAL  [durability] Durability thread started
+2015-12-30T10:27:58.028+0800 I JOURNAL  [journal writer] Journal writer thread started
+2015-12-30T10:27:58.029+0800 I CONTROL  [initandlisten] MongoDB starting : pid=3268 port=27017 dbpath=./da 64-bit host=wy
+2015-12-30T10:27:58.029+0800 I CONTROL  [initandlisten] targetMinOS: Windows Server 2003 SP2
+2015-12-30T10:27:58.029+0800 I CONTROL  [initandlisten] db version v3.0.6
+2015-12-30T10:27:58.029+0800 I CONTROL  [initandlisten] git version: 1ef45a23a4c5e3480ac919b28afcba3c615488f2
+2015-12-30T10:27:58.029+0800 I CONTROL  [initandlisten] build info: windows sys.getwindowsversion(major=6, minor=1, build=7601, platform=2, service_pack='Service Pack 1') BOOST_LIB_VERSION=1_49
+2015-12-30T10:27:58.029+0800 I CONTROL  [initandlisten] allocator: tcmalloc
+2015-12-30T10:27:58.029+0800 I CONTROL  [initandlisten] options: { config: "D:\data\mongodb.conf", net: { port: 27017 }, storage: { dbPath: "./da" }, systemLog: { destination: "file", logAppend: true, path: "./mongodb.log" } }
+2015-12-30T10:27:58.030+0800 I INDEX    [initandlisten] allocating new ns file ./da\local.ns, filling with zeroes...
+2015-12-30T10:27:58.071+0800 I STORAGE  [FileAllocator] allocating new datafile ./da\local.0, filling with zeroes...
+2015-12-30T10:27:58.071+0800 I STORAGE  [FileAllocator] creating directory ./da\_tmp
+2015-12-30T10:27:58.072+0800 I STORAGE  [FileAllocator] done allocating datafile ./da\local.0, size: 64MB,  took 0 secs
+2015-12-30T10:27:58.078+0800 I NETWORK  [initandlisten] waiting for connections on port 27017
+2015-12-30T10:31:35.708+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:62907 #1 (1 connection now open)
+2015-12-30T10:32:30.520+0800 I INDEX    [conn1] allocating new ns file ./da\test.ns, filling with zeroes...
+2015-12-30T10:32:30.565+0800 I STORAGE  [FileAllocator] allocating new datafile ./da\test.0, filling with zeroes...
+2015-12-30T10:32:30.566+0800 I STORAGE  [FileAllocator] done allocating datafile ./da\test.0, size: 64MB,  took 0 secs
