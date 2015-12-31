@@ -26,7 +26,8 @@ var userModel=db.model("users",userSchema);
 
 // 用model创建entity   Entity是具有具体的数据库操作CRUD的
 
-var userEntity=new userModel({"name":"习大大1","age":57});
+// var userEntity=new userModel({"name":"习大大1","age":57});
+// userEntity.save();
 
 var count=10;
 var baeAge=20;
@@ -36,23 +37,23 @@ for(var i=0;i<count;i++){
 	var people=new userModel({"name":name,"age":age});
 	people.save();
 }
-userEntity.save();
+
 // people1.save();
 
 
 
-var dbA=mongoose.createConnection("mongodb://127.0.0.1/random");
-var citySchema=new mongoose.Schema({
-	city:String,
-	year:Number
-});
+// var dbA=mongoose.createConnection("mongodb://127.0.0.1/random");
+// var citySchema=new mongoose.Schema({
+// 	city:String,
+// 	year:Number
+// });
 
-var cityModel=dbA.model("number",citySchema);
-var baseYear=2000;
-for(var i=0;i<100000;i++){
+// var cityModel=dbA.model("number",citySchema);
+// var baseYear=2000;
+// for(var i=0;i<100000;i++){
 
-	var city=Math.random().toFixed(5)*100000;
-	var year=baseYear+i;
-	var cityEntity=new cityModel({city:city,year:year});
-	cityEntity.save();
-}
+// 	var city=Math.random().toFixed(5)*100000;
+// 	var year=baseYear+i;
+// 	var cityEntity=new cityModel({city:city,year:year});
+// 	cityEntity.save();
+// }
