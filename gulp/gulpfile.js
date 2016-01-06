@@ -41,12 +41,14 @@ var reload=browserSync.reload;
 
 */
 
-//scss编译  css压缩
+//scss编译  css压缩  只修改更改过后的文件  需要安装gulp-changed模块  需要预先知道更改过后的路径 
 gulp.task("scss",function(){
+	var _DEST="dest";
 	gulp.src(["src/**/*.scss"])
+	.pipe(plugins.changed(_DEST))//预先知道更改过后的路径
 	.pipe(plugins.scss())
 	.pipe(minifyCss())
-	.pipe(gulp.dest("dest"))
+	.pipe(gulp.dest(_DEST))
 	.pipe(reload({ stream:true }));
 });
 

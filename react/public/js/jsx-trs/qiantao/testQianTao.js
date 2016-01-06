@@ -1,3 +1,4 @@
+//组件嵌套   子组件和父组件如何互相通信
 (function(){
 
 	var ComponentList=React.createClass({displayName: "ComponentList",
@@ -46,7 +47,8 @@
 
 			return (
 				React.createElement("div", null, 
-					React.createElement("h3", null, "ComponentBox-header"), 
+					React.createElement("h3", {style: this.state}, "ComponentBox-header"), 
+
 					React.createElement("p", null, "ComponentList-hender"), 
 					React.createElement(ComponentList, {lists: ["props里面的数据1","b","c"]}), 
 					React.createElement("p", null, "ComponentFooter-fooder"), 
