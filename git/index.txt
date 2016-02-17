@@ -12,6 +12,35 @@ http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b0
 五：本地仓库关联到远程并提交
 
 
+避免重复输入账号密码
+如果已经使用https的方式clone了代码的情况
+1.使用git remote rm origin （删除本地的最初的获取地址配置项）
+2.使用 git add origin git@github.com:wy2008826/testPassport.git
+3.加入ssh公钥
+A.首先需要检查你电脑是否已经有 SSH key 
+	a: cd ~/.ssh 
+	b:ls
+这两个命令就是检查是否已经存在 id_rsa.pub 或 id_dsa.pub 文件，如果文件已经存在，那么你可以跳过步骤B，直接进入步骤C。
+
+B.创建一个 SSH key 
+	a:ssh-keygen -t rsa -C "your_email@example.com"
+	代码参数含义：
+	-t 指定密钥类型，默认是 rsa ，可以省略。
+	-C 设置注释文字，比如邮箱。
+	-f 指定密钥文件存储文件名。
+	以上代码省略了 -f 参数，因此，运行上面那条命令后会让你输入一个文件名，用于保存刚才生成的 SSH key 代码,
+	文件名称可以不输入，使用默认，会自动生成 id_rsa 和 id_rsa.pub 两个秘钥文件
+
+C.添加你的 SSH key 到 github上面去
+	a:首先你需要拷贝 id_rsa.pub 文件的内容，你可以用编辑器打开文件复制，也可以用git命令复制该文件的内容，如：clip < ~/.ssh/id_rsa.pub
+	b:登录你的github账号，从又上角的设置（ Account Settings ）进入，然后点击菜单栏的 SSH key 进入页面添加 SSH key
+	c:点击 Add SSH key 按钮添加一个 SSH key 。把你复制的 SSH key 代码粘贴到 key 所对应的输入框中，记得 SSH key 代码的前后不要留有空格或者回车。当然，上面的 Title 所对应的输入框你也可以输入一个该 SSH key 显示在 github 上的一个别名。默认的会使用你的邮件名称。
+
+
+4.正常提交
+
+
+
 常见故障
 
 1：提交失败的时候 需要执行命令(从缓存和硬盘中删除index.lock文件) rm -f .git/index.lock 
