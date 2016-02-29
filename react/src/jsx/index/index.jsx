@@ -1,6 +1,19 @@
 (function(){
-
+	//元素操作  动画   移动端事件 怎么和react组合使用
+	
 	var names=["习大大","彭麻麻","王大师","哈哈哈"];
+	React.render(
+		<div>
+		<h3>测试循环</h3>
+		{
+				names.map(function(item,index){
+					return <li>{index+1}:{item} </li>;
+				})
+			}
+		</div>
+		
+	,document.getElementById("container"));
+
 
 	var Lists=React.createClass({
 		getInitialState:function(){
@@ -39,6 +52,11 @@
 		handleClickSub:function(){
 			console.log(21323);
 		},
+		handleInput:function(){
+			this.setState({
+				inputVal:document.getElementById("input").value
+			});
+		},
 		componentDidMount:function(){//组件被加载到页面上后
 			var _self=this;
 			window.addEventListener("resize",this.handleResize);
@@ -69,21 +87,12 @@
 						</li>)
 				}.bind(this))
 			}
+			<input id="input" onInput={this.handleInput} />
+			<span>{this.state.inputVal}</span>
 			</div>)
 		}
 	});
 
-	React.render(
-		<div>
-		<h3>测试循环</h3>
-		{
-				names.map(function(item,index){
-					return <li>{index+1}:{item} </li>;
-				})
-			}
-		</div>
-		
-	,document.getElementById("container"));
 
 
 	React.render(<Lists datavalue="123" options={["apple","window","android"]}/>,document.getElementById("lists"));

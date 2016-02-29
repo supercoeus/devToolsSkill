@@ -43,6 +43,9 @@
 				color:"#f33"
 			};
 		},
+		handleClickChild:function(){
+			
+		},
 		render:function(){
 
 			return (

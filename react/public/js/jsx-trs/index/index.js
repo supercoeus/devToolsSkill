@@ -1,6 +1,19 @@
 (function(){
-
+	//元素操作  动画   移动端事件 怎么和react组合使用
+	
 	var names=["习大大","彭麻麻","王大师","哈哈哈"];
+	React.render(
+		React.createElement("div", null, 
+		React.createElement("h3", null, "测试循环"), 
+		
+				names.map(function(item,index){
+					return React.createElement("li", null, index+1, ":", item, " ");
+				})
+			
+		)
+		
+	,document.getElementById("container"));
+
 
 	var Lists=React.createClass({displayName: "Lists",
 		getInitialState:function(){
@@ -39,6 +52,11 @@
 		handleClickSub:function(){
 			console.log(21323);
 		},
+		handleInput:function(){
+			this.setState({
+				inputVal:document.getElementById("input").value
+			});
+		},
 		componentDidMount:function(){//组件被加载到页面上后
 			var _self=this;
 			window.addEventListener("resize",this.handleResize);
@@ -67,23 +85,14 @@
 					return (React.createElement("li", {onClick: this.handleClickSub}, 
 							React.createElement("span", null, index, ": ", item)
 						))
-				}.bind(this))
+				}.bind(this)), 
 			
+			React.createElement("input", {id: "input", onInput: this.handleInput}), 
+			React.createElement("span", null, this.state.inputVal)
 			))
 		}
 	});
 
-	React.render(
-		React.createElement("div", null, 
-		React.createElement("h3", null, "测试循环"), 
-		
-				names.map(function(item,index){
-					return React.createElement("li", null, index+1, ":", item, " ");
-				})
-			
-		)
-		
-	,document.getElementById("container"));
 
 
 	React.render(React.createElement(Lists, {datavalue: "123", options: ["apple","window","android"]}),document.getElementById("lists"));
