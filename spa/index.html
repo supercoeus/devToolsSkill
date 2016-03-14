@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta content="yes" name="apple-mobile-web-app-capable"> 
+	<meta content="yes" name="apple-touch-fullscreen"> 
+	<meta content="telephone=no,email=no" name="format-detection"> 	
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="x5-fullscreen"content="true"/>
+	<meta name="full-screen"content="yes">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,minimum-scale=1.0, maximum-scale=1.0">
+	<title>单页应用</title>
+</head>
+<body>
+	<ul>
+		<li>
+			<h3>1.pjax</h3>
+			<h4>history.pushState(state, title, url)</h4>
+			<p>将当前url添加到历史数据中，修改当前url为新url。只改变地址栏显示，不发生任何请求</p>
+			<p>
+				1.state 可以放置任意数据，它将附加至当前url上<br>
+				2.title document.title  并没有什么卵用，浏览器会忽略它<br>
+				3.url   新的url<br>
+			</p>
+
+			<h4>history.replaceState(state, title, url)</h4>
+			<p>不会添加当前url到历史记录，只修改当前url</p>
+			
+
+			<h4>window.onpopstate事件</h4>
+			<p>每当url发生改变，会触发该事件，但是pushState不会触发该事件，可以把它当做浏览器的前进后退事件，该参数接收一个参数  state</p>
+
+		</li>
+
+		<li>
+			<h3>怎么兼容老一些的浏览器</h3>
+			<h4>只需要把pushState换成location.hash就可以了</h4>
+			<p>因为改变hash不会刷新页面，同时把事件替换成onhashchange就可以实现兼容了</p>
+		</li>
+	</ul>
+</body>
+</html>
