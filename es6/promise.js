@@ -58,6 +58,29 @@ console.log("outer");
 
 
 
+//每一个then执行完成后  都必须返回一个promise对象 then中传递的参数是上一个promise的resolve参数
+var	p1=function(val,time){
+	return new Promise(function(resolve,reject){
+		setTimeout(function(){
+			resolve(val);
+		},time);
+	});
+}
+
+p1("step1",1000)
+.then(function(val){
+	console.log(val);
+	return p1("step2",2000);
+})
+.then(function(val){
+	console.log(val);
+	return p1("step3",3000);
+})
+.then(function(val){
+	console.log(val);
+	return p1("step4",4000);
+})
+
 
 
 //一个小技巧  settimeout的第三个参数开始传递的是延时函数的对应参数  所以不需要bind对应的参数了
