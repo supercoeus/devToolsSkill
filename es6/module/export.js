@@ -1,4 +1,4 @@
-export const A="a";
-export const B="b";
-export const C="c";
+export var a="a";
+export var b="b";
+export var c="c";
 
