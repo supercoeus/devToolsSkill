@@ -25,7 +25,7 @@ var minifyCss=require("gulp-minify-css");
 var revCollector=require("gulp-rev-collector");
 var browserSync=require("browser-sync");
 var reload=browserSync.reload;
-
+var combiner = require('stream-combiner2');
 
 /****src**
 	1.支持多路径的数组集合
@@ -54,9 +54,15 @@ gulp.task("scss",function(){
 
 //js压缩
 gulp.task("jsMin",function(){
-	gulp.src("src/js/*.js")
-	.pipe(plugins.uglify())
-	.pipe(gulp.dest("public/js/"))
+	var combined = combiner.obj([
+	    gulp.src('src/js/*.js'),
+	    plugins.uglify(),
+	    gulp.dest("public/js/")
+	]);
+
+	combined.on('error', console.error.bind(console));
+	return combined;
+
 });
 
 
