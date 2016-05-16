@@ -145,7 +145,7 @@ git log --pretty=oneline                        会将打印信息展示在一�
 git reflog  --pretty=oneline                    打印所有commit信息 （包含当前版本之前和之后记录  也会打印moving版本 ）      用于回到未来  
 git log --graph                                 查看分支合并图
 				
-
+git reset 的作用是把已经add的内容撤销
 git reset --hard HEAD^                          回退一个版本
 git reset --hard HEAD~5                         回退五个版本
 git reset --hard commitId的前几位               会退到指定版本
