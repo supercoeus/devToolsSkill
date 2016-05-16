@@ -11,8 +11,15 @@
 		<meta name="full-screen"content="yes">
 		<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 		<title>解构赋值</title>
+		<style>
+			*{margin:0;padding:0;}
+			.test{border:1px solid #f93;width:280px;font-size: 14px}
+			.test span{display: inline-block;}
+			br{display: inline-block;}
+		</style>
 	</head>
 	<body>
+
 		<script>
 			//数组的解构赋值
 			var [a,b,c]=[1,2,3];
@@ -23,7 +30,8 @@
 
 			//对象的解构赋值
 			var {foo,bar}={bar:"bar",foo:"foo"};// 前面必须放一个变量声明 
-			// {foo,bar}={bar:"bar",foo:"foo"};//直接这样写会报错的  因为 {}会报错
+			// {foo,bar}={bar:"bar",foo:"foo"};//直接这样写会报错的  因为 {}会被解析器理解为一个代码块
+			({foo,bar}={bar:"bar",foo:"foo"});//可以这样写 避免报错 尤其是在定义一个已经存在的变量的时候
 			console.log(foo,bar);
 
 
@@ -40,16 +48,32 @@
 			var { loc: { start: { line }} } = node;
 			console.log(line);//只有line是变量
 
-			//默认赋值
-			var {x:x="x"}={x:"this is x"};
-			var {y:y="y"}={};
-			console.log(x,y);// this is x
+				//默认赋值
+				var {x:x="x"}={x:"this is x"};
+				var {y:y="y"}={};
+				console.log(x,y);// this is x
 
-			//赋值失败 会默认为 undefined
-			var {p}={q:"q"};
-			console.log(p);//undefined
+				//赋值失败 会默认为 undefined
+				var {p}={q:"q"};
+				console.log(p);//undefined
+
+
+			//以上的解构赋值是两边的结构一致，而这里结构并不一致 字符串会被解析为类数组对象
+			var [a,b,c]="hello";
+			console.log(a,b,c);//h e l 
+			var {length:len}="hello";
+			console.log("len:"+len);
+
+
+			//数值和布尔值在解构的时候  等号右侧部分会自动转换为对象
+			let {toString: s} = 123;
+			let {toString: s1} = true;
+			console.log(Number.prototype.toString==s,Boolean.prototype.toString==s1);
+
+			//很好的一个用处是加载模块的指定方法 如
+			const { SourceMapConsumer, SourceNode } = require("source-map");
+
 			
-
 		</script>
 	</body>
 </html>
