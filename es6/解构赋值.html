@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="utf-8">
+		<meta content="yes" name="apple-mobile-web-app-capable"> 
+		<meta content="yes" name="apple-touch-fullscreen"> 
+		<meta content="telephone=no,email=no" name="format-detection"> 	
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta name="x5-fullscreen"content="true"/>
+		<meta name="full-screen"content="yes">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<title>解构赋值</title>
+	</head>
+	<body>
+		<script>
+			//数组的解构赋值
+			var [a,b,c]=[1,2,3];
+
+			console.log(a,b,c);
+			[a,b,c]=[c,b,a];//变量交换
+			console.log(a,b,c);
+
+			//对象的解构赋值
+			var {foo,bar}={bar:"bar",foo:"foo"};// 前面必须放一个变量声明 
+			// {foo,bar}={bar:"bar",foo:"foo"};//直接这样写会报错的  因为 {}会报错
+			console.log(foo,bar);
+
+
+
+			//对象的嵌套赋值
+			var node = {
+			  loc: {
+			    start: {
+			      line: 1,
+			      column: 5
+			    }
+			  }
+			};
+			var { loc: { start: { line }} } = node;
+			console.log(line);//只有line是变量
+
+			//默认赋值
+			var {x:x="x"}={x:"this is x"};
+			var {y:y="y"}={};
+			console.log(x,y);// this is x
+
+			//赋值失败 会默认为 undefined
+			var {p}={q:"q"};
+			console.log(p);//undefined
+			
+
+		</script>
+	</body>
+</html>
