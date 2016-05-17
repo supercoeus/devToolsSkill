@@ -16,7 +16,7 @@
 
 
 	var Lists=React.createClass({displayName: "Lists",
-		getInitialState:function(){
+		getInitialState:function(){//如果是异步获取的初始状态呢  怎么搞？
 			return {
 				status:false,
 				color:"#f33",
@@ -24,7 +24,7 @@
 				now:new Date()
 			}
 		},
-		handleResize:function(){
+		handleResize:function(){//页面尺寸发生变化
 			this.setState({
 				wdW:window.innerWidth
 			});
@@ -71,29 +71,35 @@
 			window.removeEventListener("resize",this.handleResize);
 			// alert("did");
 		},
-		render:function(){
+		set:function(val){
+			return val<10?"0"+val:val;
+		},
+		render:function(){//render是所有方法里面最脏的一个部分  如果结构很复杂  岂不是很蛋疼
+			//思想是把数据和展示完全分开  有特定的业务逻辑模块负责更新
+			//this 多次嵌套后  this时终止向组件本身 this.set(this.state.now.getSeconds()) 
+			// 这个不是真正意义上的多层嵌套 因为本质上是显式this
 			var self=this;
-			return (React.createElement("div", {style: {color:this.state.color}, onClick: this.handleClick}, 
-			React.createElement("p", null, "点击我 "), 
-			React.createElement("p", null, this.state.now.getHours()+":"+this.state.now.getMinutes()+":"+this.state.now.getSeconds()), 
+			return (React.createElement("div", {style: {color:this.state.color}}, 
+			React.createElement("p", {onClick: this.handleClick}, "点击我 "), 
+			React.createElement("p", null, this.state.now.getHours()+":"+this.state.now.getMinutes()+":"+this.set(this.state.now.getSeconds())), 
 			this.props.datavalue, 
 			React.createElement("br", null), React.createElement("br", null), 
 			React.createElement("p", null, "更改窗口大小动态显示宽度 :", this.state.wdW), 
 			
 				this.props.options.map(function(item,index){
-
 					return (React.createElement("li", {onClick: this.handleClickSub}, 
 							React.createElement("span", null, index, ": ", item)
 						))
-				}.bind(this)), 
+				}.bind(this)), //绑定this 不然里面的点击处理函数中的this会指向到window上
 			
 			React.createElement("input", {id: "input", onInput: this.handleInput}), 
-			React.createElement("span", null, this.state.inputVal)
+			React.createElement("span", null, this.state.inputVal||"null")
 			))
 		}
 	});
 
-
+	
+	//这种写法的优势在哪里呢   
 
 	React.render(React.createElement(Lists, {datavalue: "123", options: ["apple","window","android"]}),document.getElementById("lists"));
 

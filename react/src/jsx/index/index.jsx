@@ -16,7 +16,7 @@
 
 
 	var Lists=React.createClass({
-		getInitialState:function(){
+		getInitialState:function(){//如果是异步获取的初始状态呢  怎么搞？
 			return {
 				status:false,
 				color:"#f33",
@@ -24,7 +24,7 @@
 				now:new Date()
 			}
 		},
-		handleResize:function(){
+		handleResize:function(){//页面尺寸发生变化
 			this.setState({
 				wdW:window.innerWidth
 			});
@@ -71,29 +71,35 @@
 			window.removeEventListener("resize",this.handleResize);
 			// alert("did");
 		},
-		render:function(){
+		set:function(val){
+			return val<10?"0"+val:val;
+		},
+		render:function(){//render是所有方法里面最脏的一个部分  如果结构很复杂  岂不是很蛋疼
+			//思想是把数据和展示完全分开  有特定的业务逻辑模块负责更新
+			//this 多次嵌套后  this时终止向组件本身 this.set(this.state.now.getSeconds()) 
+			// 这个不是真正意义上的多层嵌套 因为本质上是显式this
 			var self=this;
-			return (<div style={{color:this.state.color}} onClick={this.handleClick}>
-			<p>点击我 </p>
-			<p>{this.state.now.getHours()+":"+this.state.now.getMinutes()+":"+this.state.now.getSeconds()}</p>
+			return (<div style={{color:this.state.color}} >
+			<p onClick={this.handleClick}>点击我 </p>
+			<p>{this.state.now.getHours()+":"+this.state.now.getMinutes()+":"+this.set(this.state.now.getSeconds())}</p>
 			{this.props.datavalue}
 			<br/><br/>
 			<p>更改窗口大小动态显示宽度 :{this.state.wdW}</p>
 			{
 				this.props.options.map(function(item,index){
-
 					return (<li onClick={this.handleClickSub}>
 							<span>{index}: {item}</span>
 						</li>)
-				}.bind(this))
+				}.bind(this))//绑定this 不然里面的点击处理函数中的this会指向到window上
 			}
 			<input id="input" onInput={this.handleInput} />
-			<span>{this.state.inputVal}</span>
+			<span>{this.state.inputVal||"null"}</span>
 			</div>)
 		}
 	});
 
-
+	
+	//这种写法的优势在哪里呢   
 
 	React.render(<Lists datavalue="123" options={["apple","window","android"]}/>,document.getElementById("lists"));
 
