@@ -23,6 +23,7 @@ var gulpLoadPlugins=require("gulp-load-plugins");
 var plugins=gulpLoadPlugins();
 var minifyCss=require("gulp-minify-css");
 var revCollector=require("gulp-rev-collector");
+var revUrl=require("gulp-rev-urls");
 var browserSync=require("browser-sync");
 var reload=browserSync.reload;
 var combiner = require('stream-combiner2');
@@ -43,11 +44,16 @@ var combiner = require('stream-combiner2');
 
 //scss编译  css压缩  只修改更改过后的文件  需要安装gulp-changed模块  需要预先知道更改过后的路径 
 gulp.task("scss",function(){
-	var _DEST="dest";
+	var _DEST="public/css";
 	gulp.src(["src/**/*.scss"])
 	.pipe(plugins.changed(_DEST))//预先知道更改过后的路径
 	.pipe(plugins.scss())
 	.pipe(minifyCss())
+	.pipe(plugins.rename(function(path){
+		// path.dirname+="/ceshi";在每一个目标文件外面加一层目录  一般不会用到
+		// path.basename+=".min";//文件名
+		path.extname=".min.css";//扩展名
+	}))
 	.pipe(gulp.dest(_DEST))
 	.pipe(reload({ stream:true }));
 });
@@ -86,8 +92,8 @@ gulp.task("rename",function(){
 //这里有一个小坑  就是css的名字最好不要是a.css这样的   因为a-32d11dda.css会最终被替换为a-32d11dda-32d11dda.css  导致有两个md5版本号 
 //解决办法  只需要在生成 plugins.rev.manifest  的时候  设置merge为true即可
 
-gulp.task("md5",function(){
-	gulp.src(["src/css/**/*.scss"])
+gulp.task("createMd5File",function(){
+	gulp.src(["src/css/**/*.scss","src/js/**/*.js"])
 	.pipe(plugins.scss())
 	.pipe(plugins.rev())
 	.pipe(gulp.dest("md5"))
@@ -98,9 +104,15 @@ gulp.task("md5",function(){
 });
 
 
+gulp.task("md5",function(){
+	gulp.src(["public/**/*.css","public/**/*.js"])
+	pipe()
+});
+
+
 //替换目标文件的路径引用  替换MD5版本号  由于manifest文件中始终是a.css a-dewd3ed32.css   所以只会在第一次的时候进行替换  
 //一旦替换完成后  后面就不会再次替换了 而且 每次更改文件名称后  并不会覆盖原文件  所以需要先删除文件  这样就必须保证编译后的文件夹必须是纯净版的
-gulp.task("revCollector",function(){
+gulp.task("revCollector",function(){//这个任务是为了替换页面中的版本号
 	var now=new Date()*1;
 	gulp.src(["./rev/rev-manifest.json","./views/**/*.html"])
 	.pipe(revCollector())
@@ -110,43 +122,44 @@ gulp.task("revCollector",function(){
 
 
 //把不同深度目录的文件编译到同一个目录下  通过更改路径名称来修改
-gulp.task("inOne",function(){
-	gulp.src(["src/css/**/*.scss"])
-	.pipe(plugins.scss())
-	.pipe(plugins.rename(function(path){
-		path.dirname="./inOne";
-	}))
-	.pipe(gulp.dest("./"));
-});
+// gulp.task("inOne",function(){
+// 	gulp.src(["src/css/**/*.scss"])
+// 	.pipe(plugins.scss())
+// 	.pipe(plugins.rename(function(path){
+// 		path.dirname="./inOne";
+// 	}))
+// 	.pipe(gulp.dest("./"));
+// });
 
 
 //编译 当前目录下的所有scss文件
-gulp.task("scssA",function(){
-	gulp.src(["src/css/***.scss"])
-	.pipe(plugins.scss())
-	.pipe(gulp.dest("destA"));
-});
+// gulp.task("scssA",function(){
+// 	gulp.src(["src/css/***.scss"])
+// 	.pipe(plugins.scss())
+// 	.pipe(gulp.dest("destA"));
+// });
 
 
-gulp.task("scssB",function(){
-	gulp.src(["src/css/*.scss"])
-	.pipe(plugins.scss())
-	.pipe(gulp.dest("destB"));
-});
+// gulp.task("scssB",function(){
+// 	gulp.src(["src/css/*.scss"])
+// 	.pipe(plugins.scss())
+// 	.pipe(gulp.dest("destB"));
+// });
 
 
 //排除 部分文件
-gulp.task("scssNot",function(){
-	gulp.src(["src/css/**/*.scss","!src/css/*.scss"])
-	.pipe(plugins.scss())
-	.pipe(gulp.dest("destNot"));
-});
+// gulp.task("scssNot",function(){
+// 	gulp.src(["src/css/**/*.scss","!src/css/*.scss"])
+// 	.pipe(plugins.scss())
+// 	.pipe(gulp.dest("destNot"));
+// });
 
 
 
 	//clean模块  删除文件和文件夹 ***删除文件和文件夹(文件夹有内容也会删除) **删除文件和空文件夹
 gulp.task("cleanAll",function(){
-	gulp.src(["dest/***","destA/***","destB/***","destNot/***"])
+	gulp.src(["dest/","dest/***","destA/","destA/***","destB/","destB/***","destNot/","destNot/***","inOne/","inOne/***","md5/","md5/**/*"])
+	.pipe(plugins.clean())
 	.pipe(plugins.clean());
 });
 
