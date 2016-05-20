@@ -23,10 +23,16 @@ var gulpLoadPlugins=require("gulp-load-plugins");
 var plugins=gulpLoadPlugins();
 var minifyCss=require("gulp-minify-css");
 var revCollector=require("gulp-rev-collector");
-var revUrl=require("gulp-rev-urls");
+
 var browserSync=require("browser-sync");
 var reload=browserSync.reload;
-var combiner = require('stream-combiner2');
+var combiner = require('stream-combiner2');//这个是为了提示错误信息的
+
+
+var htmlmin = require('gulp-htmlmin');
+var hasher = require('gulp-hasher');
+var revUrls = require('gulp-rev-urls');
+
 
 /****src**
 	1.支持多路径的数组集合
@@ -42,9 +48,11 @@ var combiner = require('stream-combiner2');
 
 */
 
+
+
 //scss编译  css压缩  只修改更改过后的文件  需要安装gulp-changed模块  需要预先知道更改过后的路径 
 gulp.task("scss",function(){
-	var _DEST="public/css";
+	var _DEST="public";
 	gulp.src(["src/**/*.scss"])
 	.pipe(plugins.changed(_DEST))//预先知道更改过后的路径
 	.pipe(plugins.scss())
@@ -55,8 +63,9 @@ gulp.task("scss",function(){
 		path.extname=".min.css";//扩展名
 	}))
 	.pipe(gulp.dest(_DEST))
-	.pipe(reload({ stream:true }));
+	// .pipe(reload({ stream:true }));
 });
+
 
 //js压缩
 gulp.task("jsMin",function(){
@@ -103,11 +112,6 @@ gulp.task("createMd5File",function(){
 	.pipe(gulp.dest('./rev')); //保存到某一个目标路径下
 });
 
-
-gulp.task("md5",function(){
-	gulp.src(["public/**/*.css","public/**/*.js"])
-	pipe()
-});
 
 
 //替换目标文件的路径引用  替换MD5版本号  由于manifest文件中始终是a.css a-dewd3ed32.css   所以只会在第一次的时候进行替换  
