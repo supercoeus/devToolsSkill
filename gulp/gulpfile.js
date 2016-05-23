@@ -62,7 +62,12 @@ gulp.task("scss",function(){
 		// path.basename+=".min";//文件名
 		path.extname=".min.css";//扩展名
 	}))
+	.pipe(plugins.rev())
 	.pipe(gulp.dest(_DEST))
+	.pipe(plugins.rev.manifest({
+		merge:false
+	}))//生成一个版本号替换文件的json文件
+	.pipe(gulp.dest('./rev')); //保存到某一个目标路径下
 	// .pipe(reload({ stream:true }));
 });
 
@@ -72,7 +77,12 @@ gulp.task("jsMin",function(){
 	var combined = combiner.obj([
 	    gulp.src('src/js/*.js'),
 	    plugins.uglify(),
-	    gulp.dest("public/js/")
+	    plugins.rev(),
+	    gulp.dest("public/js/"),
+	    plugins.rev.manifest({
+			merge:false
+		}),
+	    gulp.dest('./rev')
 	]);
 
 	combined.on('error', console.error.bind(console));
@@ -101,11 +111,11 @@ gulp.task("rename",function(){
 //这里有一个小坑  就是css的名字最好不要是a.css这样的   因为a-32d11dda.css会最终被替换为a-32d11dda-32d11dda.css  导致有两个md5版本号 
 //解决办法  只需要在生成 plugins.rev.manifest  的时候  设置merge为true即可
 
-gulp.task("createMd5File",function(){
-	gulp.src(["src/css/**/*.scss","src/js/**/*.js"])
+gulp.task("createMd5File",function(){//这个可以用
+	gulp.src(["src/**/*.scss","src/**/*.js"])
 	.pipe(plugins.scss())
 	.pipe(plugins.rev())
-	.pipe(gulp.dest("md5"))
+	.pipe(gulp.dest("public"))
 	.pipe(plugins.rev.manifest({
 		merge:true
 	}))//生成一个版本号替换文件的json文件
@@ -116,12 +126,28 @@ gulp.task("createMd5File",function(){
 
 //替换目标文件的路径引用  替换MD5版本号  由于manifest文件中始终是a.css a-dewd3ed32.css   所以只会在第一次的时候进行替换  
 //一旦替换完成后  后面就不会再次替换了 而且 每次更改文件名称后  并不会覆盖原文件  所以需要先删除文件  这样就必须保证编译后的文件夹必须是纯净版的
-gulp.task("revCollector",function(){//这个任务是为了替换页面中的版本号
-	var now=new Date()*1;
-	gulp.src(["./rev/rev-manifest.json","./views/**/*.html"])
+gulp.task("publishVersion",function(){//这个任务是为了替换页面中的版本号
+	var now = Math.round(1000*Math.random());
+	var now=new Date();
+	var year=now.getFullYear();
+	var month=formate(now.getMonth()+1);
+	var date=formate(now.getDate());
+	var h=formate(now.getHours());
+	var m=formate(now.getMinutes());
+
+	var version=year+month+date+h+m;
+
+	gulp.src(["./views/**/*.html"])
 	.pipe(revCollector())
-	// .pipe(plugins.replace(/(\.css)/g,".css?time="+now))
-	.pipe(gulp.dest("./views/"))
+	.pipe(plugins.replace(/(\.css)(\?v=\d+)/g,".css?v="+version))//替换原理
+	
+	.pipe(gulp.dest("./views/"));
+
+	function formate(num){
+		return num<10?"0"+num:num+"";
+	}
+
+
 });
 
 

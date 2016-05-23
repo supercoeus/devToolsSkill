@@ -1,5 +1,5 @@
 {
-  "a.css": "a-6f7866c31d.css",
-  "b.css": "b-9a19212dac.css",
-  "folder/c.css": "folder/c-d822a309cc.css"
+  "css/a.min.css": "css/a.min.css?v=79a95e9ca5",
+  "css/b.min.css": "css/b.min.css?v=b6d9b2aebe",
+  "css/folder/c.min.css": "css/folder/c.min.css?v=7dd4f568fc"
 }
