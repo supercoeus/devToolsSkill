@@ -12,17 +12,61 @@
 	<title>reactNative练习</title>
 </head>
 <body>
+	<a href="http://chenpeng.info/html/3507">详情链接</a>
 	<ul>
 		<li>
 			<h4>1.安装javaJDK</h4>
+			<p>需要将jsk/bin目录配置到path环境变量中</p>
 		</li>
 		<li>
 			<h4>2.安装android studio</h4>
-			<p>a:进入SDKManager(可通过Android Studio菜单Tools-Android-SDK Manager)</p>
+			<p>a:进入SDKManager(可通过Android Studio菜单Tools-Android-SDK Manager)或者在sdk目录下
+				直接运行sdk mnager进行操作  更新sdk-23相关   设置代理地址，避免更新太慢
+			</p>
+			<p>
+				通过android studio查看sdk的安装目录，将Android\Sdk\platform-tools配置到path环境变量中，
+				同时增加ANDROID_HOME的环境变量为：Android\Sdk（sdk的整个目录）
+			</p>
 		</li>
 		<li>
-			<h4>安装C++环境</h4>
-			<p>推荐从itellyou下载并安装Visual Studio 2013或2015。也可选择Windows SDK、cygwin或mingw等其他C++环境。编译node.js的C++模块时需要用到</p>
+			<h4>3.安装C++环境</h4>
+			<p>cygwin或mingw等其他C++环境。编译node.js的C++模块时需要用到</p>
+		</li>
+		<li>
+			<h4>4.安装nodejs</h4>
+		</li>
+		<li>
+			<h4>5.安装react-native命令行工具</h4>
+			<p>
+				在gitrhub上下载react-native加压到本地 ，找到 react-native-cli目录  npm install react-native-cli -g
+			</p>
+		</li>
+		<li>
+			<h4>6.创建项目</h4>
+			<p>
+				react-native init MyProject
+			</p>
+		</li>
+		<li>
+			<h4>7.启动服务</h4>
+			<p>
+				cd MyProject      react-native start
+			</p>
+			<p>
+				验证服务是否启动成功   localhost:8081/index.android.bundle?platform=android
+			</p>
+		</li>
+		<li>
+			<h4>8.打包APP</h4>
+			<p>
+				cd MyProject      react-native run-android
+			</p>
+		</li>
+		<li>
+			<h4>9.运行app</h4>
+			<p>
+				可以使用安卓模拟器 bluestacks  ：需要设置模拟器的dev地址   ip:8081的格式（抖动模拟器，进行设置）
+			</p>
 		</li>
 	</ul>
 </body>
