@@ -1,0 +1,35 @@
+{
+  "name": "RN_HiApp",
+  "description": "HiApp written with react-native.",
+  "version": "0.1.0",
+  "author": "BelinChung",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BelinChung/react-native-hiapp.git"
+  },
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "lint": "eslint . --ext js"
+  },
+  "dependencies": {
+    "apsl-react-native-button": "^2.5.0",
+    "lodash": "^4.13.1",
+    "moment": "^2.13.0",
+    "react": "^15.1.0",
+    "react-native": "0.27.2",
+    "react-native-extra-dimensions-android": "git+https://github.com/BelinChung/react-native-extra-dimensions-android.git#d745f46",
+    "react-native-gifted-listview": "^0.0.15",
+    "react-native-gifted-messenger": "^0.1.4",
+    "react-native-gifted-spinner": "0.0.4",
+    "react-native-parsed-text": "0.0.12",
+    "react-native-tab-navigator": "^0.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^2.4.0",
+    "eslint-config-coremail": "~0.0.4",
+    "eslint-plugin-react": "^5.1.1",
+    "eslint-plugin-react-native": "^1.1.0-beta",
+    "rnpm-plugin-upgrade": "^0.26.0"
+  }
+}
