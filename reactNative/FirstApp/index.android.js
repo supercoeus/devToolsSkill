@@ -11,20 +11,36 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  View
+  View,
+  StatusBar,
+  Navigator,
+  Platform,
 } from 'react-native';
 
+import HomeView from "./app/Views/Home";
+import AboutView from "./app/Views/About";
+
+
 class FirstApp extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      tit:"app首页"
+    };
+  };
   render() {
+    let defaultName = 'HomeView';
+    let defaultComponent = HomeView;
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-         app首页!
-        </Text>
-        <Text style={styles.instructions}>
-          晃动手机 调出设置按钮
-        </Text>
-      </View>
+      <Navigator
+        initialRoute={{ name: defaultName, component: defaultComponent }}
+        configureScene={(route) => {
+          return Navigator.SceneConfigs.VerticalDownSwipeJump;
+        }}
+        renderScene={(route, navigator) => {
+          let Component = route.component;
+          return <Component {...route.params} navigator={navigator} />
+        }} />
     );
   }
 }
@@ -51,23 +67,3 @@ const styles = StyleSheet.create({
 AppRegistry.registerComponent('FirstApp', () => FirstApp);
 
 
-const App = () => {
-  return (
-      <View>
-        <TextInput placeholder="Hello" />
-      </View>
-  );
-}
-
-Alert.alert(
-  'Alert Title',
-  'My Alert Msg',
-  [
-    {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-    {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-    {text: 'OK', onPress: () => console.log('OK Pressed')},
-  ]
-)
-
-// App registration and rendering
-AppRegistry.registerComponent('FirstApp', () => App);
