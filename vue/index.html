@@ -20,18 +20,30 @@
 			{{{html}}}
 			<p>{{html}}</p>
 
-			<p v-if="show">是否编译显示该段</p>
-			<p v-else>显示另一段</p>
+			<p v-if="show">v-if 是否编译显示该段</p>
+			<p v-else>v-else显示另一段</p>
 			
-			<p v-show="show">是否显示该段</p>
+			<p v-show="show">v-show 是否显示该段</p>
+			<p v-else>v-else 显示另一段</p>
 
 			<template v-if="show"><p>展示此段template</p><p>展示此段template</p></template>
+			<ul><!-- 各种循环 -->
+				<li v-for="item in arr">
+					{{$index}} {{item.msg}}
+				</li>
+				<li v-for="value in obj">
+					{{$key}}:{{value}}
+				</li>
+				<li v-for="n in 5">
+					{{n}}
+				</li>
+			</ul>
 			<input type="text" v-model="name" >
 		</div>
 		
 		<!-- 当需要多个字段才能决定一个字段的显示的时候，怎么处理 -->
 		<!-- template可以用于包装大段的标签，作为一个整体 只有和v-if结合才有用-->
-		<!-- v-if 和v-show是有本质区别的  -->
+		<!-- v-if 和v-show是有本质区别的  v-esle可以-->
 		<!-- 过滤器的自定义？-->
 		
 		
@@ -44,7 +56,14 @@
 				active:true,//表达式
 				html:"<p>这是一个p标签</p>",
 				show:true,
-				time:new Date().getTime()
+				time:new Date().getTime(),
+				arr:[
+					{msg:"a"},{msg:"b"}
+				],
+				obj:{
+					city:"北京",
+					amout:1000
+				}
 			};
 			var vm1=new Vue({
 				el:"#example1",
