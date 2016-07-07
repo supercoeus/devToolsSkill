@@ -16,25 +16,47 @@
 		<script src="./public/js/vue.min.js"></script>
 		<div id="example1" data-id="{{attrId}}">
 			<p>{{name}}   {{* age}}  {{age+1}}  {{active?"active":"disabled"}}  {{name.split("").join("-")}}</p>
-			<p></p>
+			<p>{{name1}}  {{count}}</p>
 			{{{html}}}
 			<p>{{html}}</p>
-			<input type="text" v-model="{{name}}" >
+
+			<p v-if="show">是否编译显示该段</p>
+			<p v-else>显示另一段</p>
+			
+			<p v-show="show">是否显示该段</p>
+
+			<template v-if="show"><p>展示此段template</p><p>展示此段template</p></template>
+			<input type="text" v-model="name" >
 		</div>
 		
 		<!-- 当需要多个字段才能决定一个字段的显示的时候，怎么处理 -->
+		<!-- template可以用于包装大段的标签，作为一个整体 只有和v-if结合才有用-->
+		<!-- v-if 和v-show是有本质区别的  -->
+		<!-- 过滤器的自定义？-->
+		
 		
 		<script>
 			var data={
+				count:0,
 				attrId:123,//放在元素的attr上面
 				name:"lucy",//只能包含一个表达式  太复杂的需要在外部进行处理
 				age:25,//改变后不会在模板中体现的
 				active:true,//表达式
-				html:"<p>这是一个p标签</p>"
+				html:"<p>这是一个p标签</p>",
+				show:true,
+				time:new Date().getTime()
 			};
 			var vm1=new Vue({
 				el:"#example1",
-				data:data
+				data:data,
+				computed:{//计算属性 相当于handlebars中的helper 当依赖属性变化时，计算属性也会改变  循环中的计算怎么玩儿？
+					name1:function(){
+						return this.name.split("").join("==");
+					}
+				}
+			});
+			vm1.$watch("time",function(){
+				this.count+=1;
 			});
 		</script>
 	</body>
