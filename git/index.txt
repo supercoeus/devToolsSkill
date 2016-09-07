@@ -84,9 +84,9 @@ C.添加你的 SSH key 到 github上面去
 8.git push 主机名 分支名                        提交本地文件  然后输入用户名和密码即可
 
 
-11.git status                                   用于查看本地文件有哪些改动还没有提交
+11.git status                                   用于查看本地文件有哪些改动还没有提交   红色说明没有添加到暂存区   绿色说明添加到了暂存区，但是没有提交
 11.git diff 文件名  (git diff test.txt)         用于查看本地文件和仓库中提交之前的文件的区别
-
+12.git diff                                     可以查看工作区和暂存区文件的详细差别，一般用于status后的细节查看
 
 
 
@@ -136,7 +136,7 @@ rm  文件名称                                 删除一个文件   add 和com
 
 在切换版本之前  手头的资料一定要提交commit  不然版本切换会导致存档在本机的改动消失
 
-总结    1. 撤销工作区修改         git checkout -- file
+总结   1. 撤销工作区修改         git checkout -- file
 	    2.撤销暂存区commit        git reset --hard commitId
 	    3.撤销已经push后的提交    
 
