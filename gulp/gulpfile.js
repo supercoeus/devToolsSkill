@@ -139,8 +139,8 @@ gulp.task("publishVersion",function(){//这个任务是为了替换页面中的�
 
 	gulp.src(["./views/**/*.html"])
 	.pipe(revCollector())
-	.pipe(plugins.replace(/(\.css)(\?v=\d+)/g,".css?v="+version))//替换原理
-	
+	.pipe(plugins.replace(/\.css\?v(=\d+)?/g,".css?v="+version))//替换原理
+	.pipe(plugins.replace(/\.js\?v(=\d+)?/g,".js?v="+version))//替换原理
 	.pipe(gulp.dest("./views/"));
 
 	function formate(num){
