@@ -190,3 +190,6 @@ git log --graph   查看分支合并图
 
 正常情况下master用来发布版本 ，同时有一个dev版本，每个员工有自己的分支，比如 xiaowang   xiaoli分支
 每个员工把自己的分支提交到dev分支上   dev分支没有问题再提交到master分支上
+
+
+1
