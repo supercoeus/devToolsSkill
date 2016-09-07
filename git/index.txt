@@ -157,6 +157,7 @@ git reset --hard commitId的前几位               会退到指定版本
 对一文件的不断更改和提交   会产生很多commit版本信息  git log会记录所有的commit信息
 如何回退到历史中的任意版本呢   首先git需要知道当前的版本  当前的版本信息保存在HEAD中  上一个版本在HEAD^   上上版本在HEAD^^中  
 
+1
 
 							==   工作区和暂存区      ==
 
