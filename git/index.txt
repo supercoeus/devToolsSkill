@@ -53,7 +53,8 @@ C.添加你的 SSH key 到 github上面去
 2 git config --global user.email you@email.address
 3 git config --list 查看本地的配置列表
 
-如果传递了 --global 选项，因为Git将总是会使用该信息来处理你在系统中所做的一切操作。如果你希望在一个特定的项目中使用不同的名称或e-mail地址，你可以在该项目中运行该命令而不要--global选项。
+如果传递了 --global 选项，因为Git将总是会使用该信息来处理你在系统中所做的一切操作。
+如果你希望在一个特定的项目中使用不同的名称或e-mail地址，你可以在该项目中运行该命令而不要--global选项。
 
 3.git add . //添加本地文件到缓存区  最好在add之前先使用 git status 查看文件状态 
 
