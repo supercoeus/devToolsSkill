@@ -26,6 +26,23 @@
 			logpath =F:\data\log\mongod.log
 			dbpath = F:\data\db
 			-->
+
+			mac终端 
+			mkdir mongod_data 
+			cd mongod_data
+			mkdir data
+			mkdir conf 
+			mkdir log
+			mkdir lib
+			cp mongo-324- /bin/mondod lib/   复制mongod命令行到指定目录  方便执行
+			conf 目录下建立mongod.conf的配置文件 文件内容：
+
+			port = 27017
+			logpath =log／mongod.log
+			dbpath = data
+			force = true  //后台运行
+
+			./lib/mongod -f ./conf/mongod.conf   //启动数据库
 		</li>
 		<li>
 			4.运行mongo  输入mongo命令  链接到数据库
