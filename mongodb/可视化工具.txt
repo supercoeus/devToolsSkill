@@ -1,0 +1,10 @@
+mac
+1.appStore 搜索 toad 安装
+2.左上角connect
+3.选择MongoDB
+4.给数据库连接取一个名称，如：MongoDB,其他选项可以保持默认即可
+5.
+
+
+
+windows
