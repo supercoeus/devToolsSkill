@@ -6,4 +6,4 @@ app.use(function *(next){
 	this.body=this;
 });
 
-app.listen(3000)
+app.listen(3000);
