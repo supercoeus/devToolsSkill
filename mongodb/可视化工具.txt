@@ -8,3 +8,4 @@ mac
 
 
 windows
+mongo vue
