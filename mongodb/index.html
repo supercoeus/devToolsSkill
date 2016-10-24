@@ -26,6 +26,34 @@
 			logpath =F:\data\log\mongod.log
 			dbpath = F:\data\db
 			-->
+
+			mac终端 
+			mkdir mongod_data 
+			cd mongod_data
+			mkdir data
+			mkdir conf 
+			mkdir log
+			mkdir lib
+			cp mongo-324- /bin/mondod lib/   复制mongod命令行到指定目录  方便执行
+			conf 目录下建立mongod.conf的配置文件 文件内容：
+
+			port = 27017
+			logpath =log／mongod.log
+			dbpath = data
+			force = true  //后台运行
+
+			./lib/mongod -f ./conf/mongod.conf   //启动数据库
+
+			soft rlimits too low. Number of files is 256, should be at least 1000 这种报错的解决办法
+			｛解决办法：
+				1、关闭现在打开的mongodb 终端窗口
+				2、重新打开终端并运行一下命令：
+				　　sudo launchctl limit maxfiles 65536 65536
+				    sudo launchctl limit maxproc 2048 2048
+				　　 ulimit -n 65536
+				　　ulimit -u 2048
+				3、重启终端
+				｝
 		</li>
 		<li>
 			4.运行mongo  输入mongo命令  链接到数据库
