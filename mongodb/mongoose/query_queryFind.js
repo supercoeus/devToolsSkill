@@ -61,3 +61,19 @@ DeepModel.find(query,"occupation obj.arr",function(error,data){
 		console.timeEnd();
 	}
 });
+
+
+//查询字段的特定类型
+var query={
+	name:{
+		$type:2
+	}
+};
+DeepModel.find(query,function(error,data){
+	if(error){
+		console.log(error);
+	}
+	else{
+		console.log(data.length,data);
+	}
+});
