@@ -14,11 +14,6 @@ yield后面可以跟随数据 以及执行函数   不能直接跟随函数  直
 
 yield和return的区别 
 
-
-问题：
-
-通过next 可以向内部传递参数么？
-
 */
 
 
@@ -62,6 +57,8 @@ for(key of test){
 	console.log(key);
 }
 
+
+下面的for循环也会暂停执行
 
 var arr = [1, [[2, 3], 4], [5, 6]];
 
@@ -123,4 +120,28 @@ function *timeout(){
 var timeGen=timeout();
 timeGen.next();
 timeGen.next();
+
+
+/*
+
+通过next传递参数  控制内部流程
+
+也许这才是generator的最有用的用法  通过外部传递参数，决定状态机的内部状态
+
+*/
+
+function* outerCtrl(){
+	for(var i=0;true;i++){
+		var a=yield i;
+		if(a){
+			i=a;
+		}
+	}
+}
+
+var outerGen=outerCtrl();
+
+outerGen.next();//{value: 0, done: false}
+outerGen.next();//{value: 1, done: false}
+outerGen.next(40);//{value: 41, done: false}
 
