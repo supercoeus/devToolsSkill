@@ -14,6 +14,12 @@ yield后面可以跟随数据 以及执行函数   不能直接跟随函数  直
 
 yield和return的区别 
 
+
+难点：
+
+1.参数传递问题  传递给了谁？
+2.yield和yield之间的代码何时执行？
+
 */
 
 
@@ -126,13 +132,19 @@ timeGen.next();
 
 通过next传递参数  控制内部流程
 
-也许这才是generator的最有用的用法  通过外部传递参数，决定状态机的内部状态
+也许这才是generator的最有用的用法  通过外部传递参数，决定状态机的内部状态  
+
+
+难点  ：参数传递给了谁？
+
+next的参数会直接让上一次的yield的返回值为这个参数   然后向下执行   如果想第一次执行next就可以传参数 怎么办呢？
 
 */
 
 function* outerCtrl(){
 	for(var i=0;true;i++){
-		var a=yield i;
+		var a=yield i*2;
+		console.log(a);
 		if(a){
 			i=a;
 		}
@@ -144,4 +156,44 @@ var outerGen=outerCtrl();
 outerGen.next();//{value: 0, done: false}
 outerGen.next();//{value: 1, done: false}
 outerGen.next(40);//{value: 41, done: false}
+
+
+
+
+
+/*
+
+yield之间的代码何时执行？
+
+*/
+
+function* whenRun(){
+	yield "step1";
+	console.log("between yield");//这个console会在第2次next执行
+	yield "step2";
+}
+
+var when=whenRun();
+when.next();
+when.next();//这次才会打印 between yield
+
+
+
+
+
+
+/*
+考题
+*/
+
+function* foo(x) {
+  var y = 2 * (yield (x + 1));
+  var z = yield (y / 3);
+  return (x + y + z);
+}
+
+var f=foo(5);
+f.next();//{ value:6, done:false } 6怎么来的  5 + 1
+f.next(12);//{ value:8, done:false } 8怎么来的 2 * 12  / 3
+f.next(13);//{ value:42, done:true } 42怎么来的 5 + 24 +13
 
