@@ -10,10 +10,11 @@ var combiner = require('stream-combiner2');
 
 //css压缩  一次性
 gulp.task("cssMin",function(){
-	var _DEST="statics/css";
+	var _SRC="src/css/**/*.css";
+	var _DEST="public/css";
 
-	gulp.src(["build/sass/**/*.css","!build/sass/_ignore/**/*.css"])
-	.pipe(plugins.changed(_DEST))
+	gulp.src([_SRC,"!src/css/_ignore/**/*.css"])
+	.pipe(plugins.changed(_SRC))
 	.pipe(minifyCss())
 	.pipe(plugins.rename(function(path){
 		path.extname=".min.css";//扩展名
@@ -23,9 +24,11 @@ gulp.task("cssMin",function(){
 
 //动态监听sass文件修改  编译并压缩
 gulp.task("scss",function(){
-	var _DEST="statics/css";
-	gulp.src(["build/sass/**/*.scss","!build/sass/_ignore/**/*.scss"])
-	.pipe(plugins.changed(_DEST))
+	var _SRC="src/css/**/*.css";
+	var _DEST="public/css";
+
+	gulp.src([_SRC,"!src/css/_ignore/**/*.scss"])
+	.pipe(plugins.changed(_SRC))
 	.pipe(plugins.sass())
 	.pipe(minifyCss())
 	.pipe(plugins.rename(function(path){
@@ -37,11 +40,12 @@ gulp.task("scss",function(){
 
 //js压缩  一次性
 gulp.task("jsMin",function(){
-	var _DEST="statics/js";
+	var _SRC="src/js/**/*.js";
+	var _DEST="public/js";
 
 	var combined = combiner.obj([
-	   gulp.src("build/js/**/*.js"),
-	   plugins.changed(_DEST),
+	   gulp.src(_SRC),
+	   plugins.changed(_SRC),
 	   plugins.uglify({
 			mangle:false
 		}),
@@ -69,14 +73,14 @@ gulp.task("jsMin",function(){
 
 //动态监听css文件改动
 gulp.task("cssWatch",function(){
-	gulp.watch("build/sass/**/*.css",["cssMin"],function(){
+	gulp.watch("src/css/**/*.css",["cssMin"],function(){
 
 	});
 
 });
 //动态监听scss文件改动
 gulp.task("scssWatch",function(){
-	gulp.watch("build/sass/**/*.scss",["scss"],function(){
+	gulp.watch("src/css/**/*.scss",["scss"],function(){
 
 	});
 	
@@ -84,7 +88,7 @@ gulp.task("scssWatch",function(){
 
 //动态监听js文件改动
 gulp.task("jsWatch",function(){
-	gulp.watch("build/js/**/*.js",["jsMin"],function(){
+	gulp.watch("src/js/**/*.js",["jsMin"],function(){
 
 	});
 });
