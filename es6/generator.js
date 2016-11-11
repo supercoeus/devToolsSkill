@@ -171,11 +171,115 @@ function* whenRun(){
 	yield "step1";
 	console.log("between yield");//这个console会在第2次next执行
 	yield "step2";
+	yield "step3";
+	yield "step4";
 }
 
 var when=whenRun();
 when.next();
 when.next();//这次才会打印 between yield
+
+
+
+/*
+
+如何终结遍历器？  return 执行的时候，yield会执行么 yield之间的代码会执行么？
+遍历器立马结束并返回传递的结果
+when.return(123);//{value:123,done:true}
+
+*/
+
+function* returnGen(){
+	console.log(1);
+	yield "step1";
+	console.log(2);
+	yield "step2";
+	console.log(3);
+	yield "step3";
+}
+
+var returng=returnGen();
+
+
+
+/*
+
+yield*语句   用于在一各generator中使用另一个generator函数
+bar中执行了foo  是没有用的
+使用了yield*  语句后 相当于把调用的generator的语句放入调用者内部
+使用yield generator()  语句 则会返回一个遍历器对象
+
+*/
+
+
+function *foo(){
+	console.log("foo1");
+	yield "foo1";
+	console.log("foo2");
+	yield "foo2";
+}
+
+//yield* foo(); 相当于把foo提取进bar里面
+function *bar(){
+	console.log("bar1");
+	yield "bar1";
+
+	yield* foo();
+	console.log("bar2");
+	yield "bar2";
+}
+
+
+//yield foo(); 执行next后会在value里面返回一个遍历器对象
+function *bar1(){
+	console.log("bar1");
+	yield "bar1";
+
+	yield foo();
+	console.log("bar2");
+	yield "bar2";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -196,4 +300,6 @@ var f=foo(5);
 f.next();//{ value:6, done:false } 6怎么来的  5 + 1
 f.next(12);//{ value:8, done:false } 8怎么来的 2 * 12  / 3
 f.next(13);//{ value:42, done:true } 42怎么来的 5 + 24 +13
+
+
 
