@@ -316,6 +316,86 @@ var clock = function*() {
 
 
 
+/*
+
+具体应用有哪些？
+
+1.异步操作的同步化表达  ajax  timeout等
+2.流程控制
+3.部署Iterator接口   可以在任意对象上部署interator接口
+4.作为数据结构
+
+*/
+
+//1
+function* main() {
+  	var result = yield request("http://some.url");
+  	var resp = JSON.parse(result);
+   console.log(resp.value);
+
+   
+}
+
+function request(url) {
+  	makeAjaxCall(url, function(response){
+    	it.next(response);
+  	});
+}
+
+
+var it = main();
+it.next();
+
+//2
+step1(function (value1) {
+  step2(value1, function(value2) {
+    step3(value2, function(value3) {
+      step4(value3, function(value4) {
+        // Do something with value4
+      });
+    });
+  });
+});
+
+function* longRunningTask(value1) {
+  try {
+    var value2 = yield step1(value1);
+    var value3 = yield step2(value2);
+    var value4 = yield step3(value3);
+    var value5 = yield step4(value4);
+    // Do something with value4
+  } catch (e) {
+    // Handle any error from step1 through step4
+  }
+}
+
+function scheduler(task) {
+  var taskObj = task.next(task.value);
+  // 如果Generator函数未结束，就继续调用
+  if (!taskObj.done) {
+    task.value = taskObj.value
+    scheduler(task);
+  }
+}
+
+scheduler(longRunningTask(initialValue));
+
+
+// 3
+
+function *interatorObj(obj){
+	var keys=Object.keys(obj);
+	for(let i=0;i<keys.length;i++){
+		yield [keys[i],obj[keys[i]]]
+	}
+}
+
+var obj={a:1,b:2}
+
+var a=interatorObj(obj);
+for(let [key,value] of a){
+	console.log(key,value);
+}
 
 
 /*
