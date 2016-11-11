@@ -204,10 +204,27 @@ var returng=returnGen();
 
 /*
 
-yield*语句   用于在一各generator中使用另一个generator函数
+yield*语句   相当于一个遍历器 遍历后面跟随的结果  
+yield* 后面可以跟随generator函数、数组、字符串  
+
+yield* generator();//遍历所有的yield结果
+yield* ["a","b","c"];
+yield* "abc";
+
+
 bar中执行了foo  是没有用的
-使用了yield*  语句后 相当于把调用的generator的语句放入调用者内部
+使用了yield*  语句后 相当于把调用的generator的语句放入调用者内部  相当于调用了一个for循环 
 使用yield generator()  语句 则会返回一个遍历器对象
+
+
+如果被代理的Generator函数有return语句，那么就可以向代理它的Generator函数返回数据。
+
+注意下面三者的区别：
+foo();
+yield foo();
+yield* foo();
+var a=yield* foo();
+
 
 */
 
@@ -217,6 +234,8 @@ function *foo(){
 	yield "foo1";
 	console.log("foo2");
 	yield "foo2";
+
+	return "hello"
 }
 
 //yield* foo(); 相当于把foo提取进bar里面
@@ -224,63 +243,76 @@ function *bar(){
 	console.log("bar1");
 	yield "bar1";
 
-	yield* foo();
-	console.log("bar2");
-	yield "bar2";
-}
-
-
-//yield foo(); 执行next后会在value里面返回一个遍历器对象
-function *bar1(){
-	console.log("bar1");
-	yield "bar1";
-
+	foo();
 	yield foo();
-	console.log("bar2");
+	yield* foo();
+	var a=yield* foo();
+
+	console.log(a,"bar21");
+
 	yield "bar2";
+	yield* ["bar3","bar4","bar5"];
+	yield* "abcdef";
+
 }
 
 
+/*
+做为对象属性的generator函数
+
+*/
+
+let obj={
+	* generatot(){
+		yield "a";
+		yield "b";
+	}
+} 
+
+let obj={
+	generator:function* (){
+		yield "a";
+		yield "b";
+	}
+} 
 
 
 
+/*
+
+如何在generator上挂载属性呢？
+
+1.generator内部的this是不会挂载的
+*/
 
 
+function *addKeys(){
+	yield 1;
+	yield this.a="a";
+	yield this.b="b";
+}
+
+var add=addKeys.call(addKeys.prototype);
+
+add.next();
+add.next();
+
+add.a;
+add.b;
 
 
+/*
+generator实现一个状态机，内部状态会轮番切换
+*/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+var clock = function*() {
+  while (true) {
+    console.log('Tick!');
+    yield;
+    console.log('Tock!');
+    yield;
+  }
+};
 
 
 
