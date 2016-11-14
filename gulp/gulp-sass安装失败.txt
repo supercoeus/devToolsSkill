@@ -1,0 +1,10 @@
+gulp-sass安装失败
+
+因为安装gulp-sass的时候会默认安装node-sass
+
+node-sass里面需要安装一个node文件会导致安装失败
+
+解决办法
+1.npm -nstall gulp-sass
+2.报错之后  停止安装  进入node-sass里面的lib/extensions.js  的 getBinaryUrl方法
+3.改动return为  return 'https://github.com/sass/node-sass-binaries/blob/master/win32-x64-46_binding.node'; 即可
