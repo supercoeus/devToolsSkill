@@ -1,3 +1,10 @@
+终极解决办法：（cnpm必须是4.2.0版本）
+1. npm install cnpm@4.2.0 -g
+2. cnpm install
+
+
+
+
 http://blog.csdn.net/jimmyhandy/article/details/50723174
 
 gulp-sass安装失败
