@@ -155,7 +155,7 @@ var outerGen=outerCtrl();
 
 outerGen.next();//{value: 0, done: false}
 outerGen.next();//{value: 1, done: false}
-outerGen.next(40);//{value: 41, done: false}
+outerGen.next(40);//{value: 82, done: false}
 
 
 
