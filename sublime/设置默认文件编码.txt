@@ -1,0 +1,5 @@
+选择菜单Preferences->Settings-User
+
+在花括号中添加下面一行代码：
+
+"default_encoding": "UTF-8",
