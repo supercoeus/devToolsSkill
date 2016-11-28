@@ -243,10 +243,10 @@ function *bar(){
 	console.log("bar1");
 	yield "bar1";
 
-	foo();
-	yield foo();
-	yield* foo();
-	var a=yield* foo();
+	foo();//不会有任何效果
+	yield foo();//返回一个遍历器对象
+	yield* foo();//把foo内部的代码在此处执行
+	var a=yield* foo();//会把foo里面的ruturn值赋给a a=hello
 
 	console.log(a,"bar21");
 
