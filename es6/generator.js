@@ -398,6 +398,32 @@ for(let [key,value] of a){
 }
 
 
+
+/*
+一个典型的用法
+*/
+
+function *timeGen(){
+	yield timeout(3000);
+	yield timeout(2000);
+	yield timeout(1000);
+	yield timeout(2000);
+	yield timeout(3000);
+
+}
+
+
+function timeout(time){
+	setTimeout(function(){
+		console.log(time);
+		t.next();
+	},time);
+}
+
+var t=timeGen();
+
+
+
 /*
 考题
 */
