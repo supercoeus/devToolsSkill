@@ -400,7 +400,12 @@ for(let [key,value] of a){
 
 
 /*
+
 一个典型的用法
+yield后面紧跟着异步操作，异步操作内部控制着next的流程控制
+和async的用法如出一辙
+async的await后面紧跟着异步操作，这个异步操作被封装为一个promise对象，promise变为resolved后，流程才得以接着运行
+
 */
 
 function *timeGen(){
