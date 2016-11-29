@@ -29,6 +29,21 @@ var timeout=function(time,cb){
 	});
 }
 
+
+/*
+
+新建一个空的promise
+
+var p=Promise.resolve();
+p.then(function(){
+	
+});
+
+*/
+
+
+
+
 //then 里面可以继续返回promise函数和具体的数据   在接下来的then里面可以接收到对应的参数
 //下面的例子可以用在按照某种顺序排列的动画序列 
 

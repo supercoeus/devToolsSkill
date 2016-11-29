@@ -8,6 +8,7 @@ async函数返回一个Promise对象，可以使用then方法添加回调函数�
 
 async的await后面紧跟着异步操作，这个异步操作被封装为一个promise对象，promise变为resolved后，流程才得以接着运行
 
+promise和generator要想实现同步化，就需要对
 
 */
 
@@ -19,7 +20,7 @@ function timeout(ms) {
 
 async function asyncPrint(value, ms) {
   await timeout(ms);
-  await timeout(1000);
+  // await timeout(1000);
   console.log(value)
 }
 

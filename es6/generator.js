@@ -307,10 +307,8 @@ generator实现一个状态机，内部状态会轮番切换
 
 var clock = function*() {
   while (true) {
-    console.log('Tick!');
-    yield;
-    console.log('Tock!');
-    yield;
+    yield "Tick";
+    yield "Tock";
   }
 };
 
