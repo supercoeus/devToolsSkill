@@ -13,11 +13,10 @@
 		<title>vue测试</title>
 	</head>
 	<body>
-		<script src="./public/js/vue.min.js"></script>
+		<script src="./public/js/vue.js"></script>
 		<div id="example1" data-id="{{attrId}}">
-			<p>{{name}}   {{* age}}  {{age+1}}  {{active?"active":"disabled"}}  {{name.split("").join("-")}}</p>
+			<p>{{name}}   {{age+1}} </p>
 			<p>{{name1}}  {{count}}</p>
-			{{{html}}}
 			<p>{{html}}</p>
 
 			<p v-if="show">v-if 是否编译显示该段</p>
