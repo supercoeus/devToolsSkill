@@ -1,0 +1,23 @@
+@import "./_ignore/base";
+
+.todo-list{
+	margin:30px;
+	width:60%;
+	.todo-input{
+		display: block;
+		width: 100%;
+		height: 50px;
+		border:1px solid #f3f3f3;
+		@include borderRadius(3px);
+		text-indent: 10px;
+	}
+	.todo-item{
+		line-height: 40px;
+		.todo-radio{
+			$size:18px;
+			width: $size;
+			height: $size;
+			vertical-align: middle;
+		}
+	}
+}

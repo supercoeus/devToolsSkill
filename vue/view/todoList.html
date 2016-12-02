@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="utf-8">
+		<meta content="yes" name="apple-mobile-web-app-capable"> 
+		<meta content="yes" name="apple-touch-fullscreen"> 
+		<meta content="telephone=no,email=no" name="format-detection"> 	
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta name="x5-fullscreen"content="true"/>
+		<meta name="full-screen"content="yes">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<title>todoList练习</title>
+		<link rel="stylesheet" href="../public/css/todiList.min.css">
+		<script src="../public/js/vue.js"></script>
+	</head>
+	<body>
+		<!-- 
+
+		事件
+		如获取当前事件的元素？
+		很多元素的时候，怎么使用事件捕获？
+		如何阻止事件冒泡？
+
+		如何实现元素的精确查找？
+		
+		深度元素操作，如何对应到深度的数据？
+
+		属性绑定
+		如何绑定class？数组  数组里面可以嵌套对象  class名字需要用引号包含
+		如何绑定style？
+
+		如何给对应的元素添加动画？
+		
+		
+		 -->
+		
+		<div id="todoList" class="todo-list">
+			<input type="text" v-on:keyup.enter="add" class="todo-input">
+			<ul v-show="lists.length>0">
+				<li v-for="item in lists" :class="['todo-item','clearfix']">
+					<input type="checkbox" :class="['todo-radio']">
+					<label v-text="item.text" :class="['todo-text']"></label>
+				</li>
+			</ul>
+		</div>
+		
+		<script>
+			window.onload=function(){
+				var todoList=new Vue({
+					el:"#todoList",
+					data:{
+						lists:[
+							{
+								text:"test"
+							}
+						]
+					},
+					methods:{
+						add:function(event,a){
+							var itemData={
+								text:event.target.value
+							};
+							this.lists.push(itemData);
+						}
+					}
+				});
+			}
+		</script>
+	</body>
+</html>
+	
