@@ -1,8 +1,10 @@
 @import "./_ignore/base";
+@import "./_ignore/buttons";
 
 .todo-list{
 	margin:30px;
 	width:60%;
+	margin:30px auto;
 	.todo-input{
 		display: block;
 		width: 100%;
@@ -12,12 +14,25 @@
 		text-indent: 10px;
 	}
 	.todo-item{
-		line-height: 40px;
+		padding:10px 0;
 		.todo-radio{
 			$size:18px;
 			width: $size;
 			height: $size;
 			vertical-align: middle;
 		}
+		label{
+			text-indent: 10px;
+			display: inline-block;
+			cursor:pointer;
+			&.completed{
+				color:#999;
+				text-decoration:line-through;
+			}
+		}
+	}
+	.todo-footer{
+		padding:10px 0;
 	}
 }
+

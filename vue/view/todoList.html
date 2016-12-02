@@ -21,15 +21,19 @@
 		如获取当前事件的元素？
 		很多元素的时候，怎么使用事件捕获？
 		如何阻止事件冒泡？
+		循环中的事件绑定要绑定到每一个可操作的元素身上？内存不会占用太多么？
+
 
 		如何实现元素的精确查找？
 		
 		深度元素操作，如何对应到深度的数据？
 
 		属性绑定
-		如何绑定class？数组  数组里面可以嵌套对象  class名字需要用引号包含
+		如何绑定class？数组  数组里面可以嵌套对象  class名字需要用引号包含 原始写法和绑定class可以并存
 		如何绑定style？
-
+		
+		watch如何设置深度监听？
+		
 		如何给对应的元素添加动画？
 		
 		
@@ -38,30 +42,90 @@
 		<div id="todoList" class="todo-list">
 			<input type="text" v-on:keyup.enter="add" class="todo-input">
 			<ul v-show="lists.length>0">
-				<li v-for="item in lists" :class="['todo-item','clearfix']">
-					<input type="checkbox" :class="['todo-radio']">
-					<label v-text="item.text" :class="['todo-text']"></label>
+				<li v-for="item in filterTodos" class="todo-item" :class="['clearfix']" :data-id="item.id">
+					<input type="checkbox" :class="['todo-radio']" v-model="item.completed" :id="item.id">
+					<label v-text="item.text" :class="['todo-text',{'completed':item.completed}]" :for="item.id"></label>
+					<span class="btn btn-sm btn-red fn-fr" v-on:click="deleteTodo(item)">删除</span>
 				</li>
 			</ul>
+			<div class="clearfix todo-footer">
+				<label >共<span v-text="remaining"></span>/<span v-text="lists.length"></span>条</label>
+				<span class="btn btn-sm btn-green" v-on:click="setShowStatus" data-show-status="all">全部</span>
+				<span class="btn btn-sm btn-green" v-on:click="setShowStatus" data-show-status="completed">已完成</span>
+				<span class="btn btn-sm btn-green" v-on:click="setShowStatus" data-show-status="active">未完成</span>
+			</div>
 		</div>
 		
 		<script>
 			window.onload=function(){
-				var todoList=new Vue({
+
+				var storage={
+					getLists:function(){
+						return JSON.parse(localStorage.getItem("todoList")||"[]");
+					},
+					setLists:function(lists){
+						localStorage.setItem("todoList",JSON.stringify(lists));
+					}
+				};
+				var filters={
+					all:function(todos){
+						return todos;
+					},
+					active:function(todos){
+						return todos.filter(function(todo){
+							return !todo.completed;
+						});
+					},
+					completed:function(todos){
+						return todos.filter(function(todo){
+							return todo.completed;
+						});
+					}
+				};
+
+				todoList=new Vue({
 					el:"#todoList",
 					data:{
-						lists:[
-							{
-								text:"test"
-							}
-						]
+						lists:storage.getLists(),
+						uid:0,
+						active:"all",
 					},
 					methods:{
 						add:function(event,a){
-							var itemData={
-								text:event.target.value
-							};
-							this.lists.push(itemData);
+							var text=event.target.value.trim();
+							this.uid+=1;
+							if(text){
+								this.lists.push({
+									text:text,
+									completed:false,
+									id:this.uid
+								});
+							}
+							
+						},
+						deleteTodo:function(todo){
+							var index=this.lists.indexOf(todo);
+							this.lists.splice(index,1);
+						},
+						setShowStatus:function(e){
+							var status=e.target.getAttribute("data-show-status");
+							this.active=status;
+						}
+					},
+					watch:{
+						lists:{
+							handler:function(todos){
+								storage.setLists(todos);
+							},
+							deep: true
+						}
+					},
+					computed:{//计算属性
+						remaining:function(){
+							return filters.active(this.lists).length;
+						},
+						filterTodos:function(){
+							return filters[this.active](this.lists);
 						}
 					}
 				});
