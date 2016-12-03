@@ -1,0 +1,33 @@
+@import "_ignore/base";
+@import "_ignore/theme";
+@import "_ignore/buttons";
+
+$oSize:100px;
+$dSize:300px;
+.test-fade{
+	width:$dSize;
+	height:$dSize;
+	background-color:red;
+}	
+.fade-enter-active,.fade-leave-active{
+	transition:all ease 4s;
+}
+
+.fade-leave-active{
+	opacity:0;
+	width:$oSize;
+	height:$oSize;
+}
+.fade-enter-active{
+	opacity:1;
+	width:$dSize;
+	height:$dSize;
+}
+.fade-enter{
+	opacity:0.5;
+	width:$oSize;
+	height:$oSize;
+}
+
+
+

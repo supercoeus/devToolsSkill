@@ -36,7 +36,28 @@
 	}
 }
 
-
-.v-myfade{
-	
+.todo-ul{
+	height:auto;
+}	
+.fade-enter-active,.fade-leave-active{
+	transition:all ease 500ms;
 }
+
+.fade-leave-active{
+	opacity:0;
+	height:0;
+}
+.fade-enter-active{
+	opacity:1;
+	height:auto;
+}
+.fade-enter{
+	opacity:0;
+	height:0;
+}
+
+
+
+
+
+

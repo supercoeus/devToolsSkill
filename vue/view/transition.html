@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta content="yes" name="apple-mobile-web-app-capable"> 
+	<meta content="yes" name="apple-touch-fullscreen"> 
+	<meta content="telephone=no,email=no" name="format-detection"> 	
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="x5-fullscreen"content="true"/>
+	<meta name="full-screen"content="yes">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<title>vue动画练习</title>
+	<link rel="stylesheet" href="../public/css/transition.min.css">
+	<script src="../public/js/vue.js"></script>
+</head>
+<body>
+	<div id="box">
+		<span class="btn btn-sm btn-blue" v-on:click="show=!show">
+			点击测试动画
+		</span>
+		<transition name="fade">
+			<div v-show="show" class="test-fade"></div>
+		<transition>
+	</div>
+
+	<script >
+		window.onload=function(){
+			tr=new Vue({
+				el:"#box",
+				data:{
+					show:false
+				}
+			});
+		}
+	</script>
+</body>
+</html>
