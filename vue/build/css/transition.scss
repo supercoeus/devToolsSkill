@@ -8,26 +8,28 @@ $dSize:300px;
 	width:$dSize;
 	height:$dSize;
 	background-color:red;
-}	
+}
+
+// 为什么fade－enter要放到最后才起作用
+
 .fade-enter-active,.fade-leave-active{
 	transition:all ease 4s;
 }
 
-.fade-leave-active{
-	opacity:0;
-	width:$oSize;
-	height:$oSize;
-}
 .fade-enter-active{
 	opacity:1;
 	width:$dSize;
 	height:$dSize;
+}
+.fade-leave-active{
+	opacity:0;
+	width:$oSize;
+	height:$oSize;
 }
 .fade-enter{
 	opacity:0.5;
 	width:$oSize;
 	height:$oSize;
 }
-
 
 
