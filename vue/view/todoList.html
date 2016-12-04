@@ -45,15 +45,15 @@
 		
 		<div id="todoList" class="todo-list">
 			<input type="text" v-on:keyup.enter="add" class="todo-input">
-			<transition name="fade">
-				<ul v-show="lists.length>0" class="todo-ul">
-					<li v-for="item in filterTodos" class="todo-item" :class="['clearfix']" :data-id="item.id" >
+			<ul v-show="lists.length>0" class="todo-ul">
+				<transition-group name="fade">
+					<li v-for="item in filterTodos" class="todo-item" :class="['clearfix']" :key="item.id" >
 						<input type="checkbox" :class="['todo-radio']" v-model="item.completed" :id="item.id">
 						<label v-text="item.text" :class="['todo-text',{'completed':item.completed}]" :for="item.id"></label>
 						<span class="btn btn-sm btn-red fn-fr" v-on:click="deleteTodo(item)">删除</span>
 					</li>
-				</ul>
-			</transition>
+				</transition-group>
+			</ul>
 			
 			<div class="clearfix todo-footer">
 				<label >共<span v-text="remaining"></span>/<span v-text="lists.length"></span>条</label>
@@ -124,13 +124,6 @@
 							var status=e.target.getAttribute("data-show-status");
 							this.active=status;
 						},
-						changeMsg:function(){
-							var str="中国文联第十次全国代表大会和中国作协第九次全国代表大会召开，这个堪称中国文艺界最高逼格的会议了，赵薇、黄渤、胡歌、宋佳、佟丽娅、马苏、侯鸿亮、汪明荃、徐帆、董卿、周涛、倪萍、鲁豫、朱军、康辉、白岩松、张国立、唐国强……都去了，排场好大！";
-							var length=str.length;
-							var start=Math.round(Math.random()*length*0.5);
-							
-							this.msg=str.substr(start,Math.round(length*0.5));
-						}
 					},
 					watch:{
 						lists:{
