@@ -1,0 +1,8 @@
+@import "_ignore/base";
+@import "_ignore/buttons";
+
+#box,.container{
+	padding:20px 10px;
+	@include boxSizing(border-box);
+
+}

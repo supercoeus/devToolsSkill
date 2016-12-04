@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta content="yes" name="apple-mobile-web-app-capable"> 
+	<meta content="yes" name="apple-touch-fullscreen"> 
+	<meta content="telephone=no,email=no" name="format-detection"> 	
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="x5-fullscreen"content="true"/>
+	<meta name="full-screen"content="yes">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<title>vue-router练习</title>
+	<link rel="stylesheet" href="../public/css/router.min.css">
+	<script src="../public/js/vue.js"></script>
+	<script src="../public/js/vue-router.2.1.1.js"></script>
+</head>
+<body>
+
+	<div id="box">
+		<p>
+			<router-link class='btn btn-sm btn-green' to="/home">主页</router-link>
+			<router-link class='btn btn-sm btn-green' :to="{path:'/news',query:{age:20}}">带参数的链接</router-link>
+			<router-link class='btn btn-sm btn-green' to="replace" replace>替换</router-link>
+
+		</p>
+		<div class="container">
+			<router-view></router-view>
+		</div>
+	</div>
+
+	<script >
+		var Home={
+			template:"<h3>主页</h3>"
+		};
+		var News={
+			template:"<h3>带参数的链接</h3>"
+		};
+		var Replace={
+			template:"<h3>replace</h3>"
+		};
+		var routes=[
+			{
+				path:"/home",component:Home
+			},
+			{
+				path:"/news",component:News
+			},
+			{
+				path:"/replace",component:Replace
+			}
+		];
+		var router=new VueRouter({
+			routes:routes
+		});
+		var test=new Vue({
+			router:router,
+			el:"#box"
+		});
+	</script>
+</body>
+</html>
