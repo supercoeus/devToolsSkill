@@ -12,6 +12,7 @@
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 	<title>vue-router练习</title>
 	<link rel="stylesheet" href="../public/css/router.min.css">
+	<link rel="stylesheet" href="../public/css/animate.css">
 	<script src="../public/js/vue.js"></script>
 	<script src="../public/js/vue-router.2.1.1.js"></script>
 </head>
@@ -21,11 +22,13 @@
 		<p>
 			<router-link class='btn btn-sm btn-green' to="/home">主页</router-link>
 			<router-link class='btn btn-sm btn-green' :to="{path:'/news',query:{age:20}}">带参数的链接</router-link>
-			<router-link class='btn btn-sm btn-green' to="replace" replace>替换</router-link>
-
+			<router-link class='btn btn-sm btn-green' to="/replace" replace>替换</router-link>
+			<router-link class='btn btn-sm btn-green' to="/user/xidada" replace>用户</router-link>
 		</p>
 		<div class="container">
-			<router-view></router-view>
+			<transition enter-active-class="animated slideInLeft" leave-active-class="animated slideOutRight">
+				<router-view></router-view>
+			</transition>
 		</div>
 	</div>
 
@@ -39,6 +42,15 @@
 		var Replace={
 			template:"<h3>replace</h3>"
 		};
+		var User={//动态路由  可以监听路由变化 并作对应的处理
+			template:"<h3>{{ $route.params.name}}</h3>",
+			watch:{
+				"$route":function(to,from){
+					console.log(to,from);
+				}
+			}
+		};
+
 		var routes=[
 			{
 				path:"/home",component:Home
@@ -48,11 +60,16 @@
 			},
 			{
 				path:"/replace",component:Replace
+			},
+			{
+				path:"/user/:name",component:User
 			}
 		];
 		var router=new VueRouter({
+			// mode:"history",
 			routes:routes
 		});
+
 		var test=new Vue({
 			router:router,
 			el:"#box"
