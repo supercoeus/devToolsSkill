@@ -2,7 +2,11 @@ var webpack=require("webpack");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');//内置了js压缩 css 就是分离等功能  css和js都会被压缩掉
 
+var fs=require("fs");
 /*
+entry 可以是字符串  数组 对象
+
+
 Loaders
 test :一个匹配loaders所处理的文件的拓展名的正则表达式
 loader：loader的名称
@@ -21,9 +25,11 @@ html的插件会替换掉hml中的引用js 以及版本号  但是html的放置�
 
 module.exports={
 	devtool: 'eval-source-map',
-	entry:"./buildWebpack/js/page/main.js",
+	entry:{
+		"/js/page/main":"./buildWebpack/js/page/main.js"
+	},
 	output:{
-		path:"./public/js/page/",
+		path:"./public/",
 		filename:"[name].min.js"
 		// filename:"[name]-[hash].min.js"
 	},
