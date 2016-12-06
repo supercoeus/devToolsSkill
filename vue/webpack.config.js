@@ -2,9 +2,14 @@ var webpack=require("webpack");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');//内置了js压缩 css 就是分离等功能  css和js都会被压缩掉
 
-var fs=require("fs");
 /*
+webpack --watch   会自动监听
+webpack   一次性执行
+
+
+
 entry 可以是字符串  数组 对象
+"/js/page/entry"    entry为打包后文件的名字
 
 
 Loaders
@@ -14,22 +19,28 @@ include/exclude：手动添加必须处理的文件（文件夹）或屏蔽不�
 query：为loaders提供额外的设置选项（可选）
 
 
-http://blog.csdn.net/kun5706947/article/details/52596766
-
 babel的配置放在了.babellrc文件中
-
 html的插件会替换掉hml中的引用js 以及版本号  但是html的放置位置位置有问题
+
+
+http://blog.csdn.net/kun5706947/article/details/52596766
+https://segmentfault.com/a/1190000003985802
+
+
 */
 
+
+var srcPath="./buildWebpack/";
+var distPath="./public/";
 
 
 module.exports={
 	devtool: 'eval-source-map',
 	entry:{
-		"/js/page/main":"./buildWebpack/js/page/main.js"
+		"/js/page/main":srcPath+"js/page/main.js"
 	},
 	output:{
-		path:"./public/",
+		path:distPath,
 		filename:"[name].min.js"
 		// filename:"[name]-[hash].min.js"
 	},

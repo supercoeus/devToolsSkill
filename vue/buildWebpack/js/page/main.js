@@ -2,7 +2,7 @@
 require("!style!css!sass!../../css/main.scss");
 
 
-let color="#e8e8e8";
+let color="#fff";
 document.body.style.backgroundColor=color;
 
 // function *testGenerator(){
