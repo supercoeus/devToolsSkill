@@ -83,6 +83,8 @@ gulp.task("allWatch",function(){
 	gulp.run(["cssWatch","jsWatch","scssWatch"]);
 });
 
+
+
 gulp.task("default",function(){
 	console.log("请输入具体任务名称");
 	console.log("css压缩：gulp cssMin");

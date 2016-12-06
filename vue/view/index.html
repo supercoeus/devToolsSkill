@@ -13,10 +13,10 @@
 		<title>vue测试</title>
 	</head>
 	<body>
-		<script src="./public/js/vue.js"></script>
-		<div id="example1" data-id="{{attrId}}">
-			<p>{{name}}   {{age+1}} </p>
-			<p>{{name1}}  {{count}}</p>
+		<script src="../public/js/vue.js"></script>
+		<div id="example1" :data-id="attrId">
+			<p>{{name}}</p>
+			<p>{{name1}}</p>
 			<p>{{html}}</p>
 
 			<p v-if="show">v-if 是否编译显示该段</p>
@@ -27,8 +27,8 @@
 
 			<template v-if="show"><p>展示此段template</p><p>展示此段template</p></template>
 			<ul><!-- 各种循环 -->
-				<li v-for="item in arr">
-					{{$index}} {{item.msg}}
+				<li v-for="(item,index) in arr">
+					{{index}} {{item.msg}}
 				</li>
 				<li v-for="value in obj">
 					{{$key}}:{{value}}
@@ -77,6 +77,6 @@
 				this.count+=1;
 			});
 		</script>
+		<script src="../public/js/page/main.min.js"></script>
 	</body>
 </html>
-	
