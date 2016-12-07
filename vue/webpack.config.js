@@ -42,12 +42,13 @@ var distPath="./public/";
 module.exports={
 	devtool: 'eval-source-map',
 	entry:{
-		"/js/page/main":srcPath+"main.js",
-		"/js/page/array":[srcPath+"a.js",srcPath+"b.js",srcPath+"c.js"]
+		"page/main":srcPath+"main.js",
+		"page/array":[srcPath+"a.js",srcPath+"b.js",srcPath+"c.js"],
+		"app":"./src/app.js"
 	},
 	output:{
 		path:distPath,
-		filename:"[name].min.js",
+		filename:"/js/[name].min.js",
 		chunkFilename: "[id].bundle.js"
 		// filename:"[name]-[hash].min.js"
 	},
@@ -56,6 +57,7 @@ module.exports={
 			{test:/\.css$/,loader:"!style!css"},
 			{test:/\.scss$/,loader:"!style!css!scss"},
 			{test: /\.json$/,loader: "json"},
+			{test: /\.vue$/,loader: "vue-loader"},
 			{
 				test: /\.js$/,
 				loader: "babel-loader",
