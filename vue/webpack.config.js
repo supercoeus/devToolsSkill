@@ -12,6 +12,11 @@ entry 可以是字符串  数组 对象
 "/js/page/entry"    entry为打包后文件的名字
 
 
+output
+chunkFilename 未被列在entry中，却又需要被打包出来的文件命名配置
+
+
+
 Loaders
 test :一个匹配loaders所处理的文件的拓展名的正则表达式
 loader：loader的名称
@@ -30,18 +35,20 @@ https://segmentfault.com/a/1190000003985802
 */
 
 
-var srcPath="./buildWebpack/";
+var srcPath="./buildWebpack/js/page/";
 var distPath="./public/";
 
 
 module.exports={
 	devtool: 'eval-source-map',
 	entry:{
-		"/js/page/main":srcPath+"js/page/main.js"
+		"/js/page/main":srcPath+"main.js",
+		"/js/page/array":[srcPath+"a.js",srcPath+"b.js",srcPath+"c.js"]
 	},
 	output:{
 		path:distPath,
-		filename:"[name].min.js"
+		filename:"[name].min.js",
+		chunkFilename: "[id].bundle.js"
 		// filename:"[name]-[hash].min.js"
 	},
 	module:{
@@ -51,11 +58,8 @@ module.exports={
 			{test: /\.json$/,loader: "json"},
 			{
 				test: /\.js$/,
-				loader: "babel",
+				loader: "babel-loader",
 				exclude: /node_modules/,
-				// query: {
-	   //        presets: ['es2015']
-	   //      }
 			},
 		]
 	},
