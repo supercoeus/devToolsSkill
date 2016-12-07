@@ -1,12 +1,9 @@
 <template>
-	<div>
-		<ul class="bottom-nav-ul">
-			<li class="nav-item" v-for="item in navs" v-text="item.text"></li>
-		</ul>
-	</div>
+	<v-bottomNav><v-bottomNav>
 </template>
 
 <script>
+	import bottomNav from "./components/bottomNav/bottomNav.vue";
 	export default {
 		data(){
 			return {
@@ -16,10 +13,13 @@
 					{text:"关于"},
 				],
 			}
+		},
+		components:{
+			'v-bottomNav':bottomNav
 		}
 	}
 </script>
-
+<style type="text/css" src="../public/css/app.min.css"></style>
 <style  lang="sass">
 	html,body,#v-app{
 		width: 100%;
@@ -31,22 +31,5 @@
 </style>
 
 <style scoped lang="sass">
-	ul{
-		list-style:none;
-	}
-	.bottom-nav-ul{
-		$h:40px;
-		height: $h;
-		position: fixed;
-		bottom:0;
-		left:0;
-		width: 100%;
-		display: flex;
-		display: -webkit-flex;
-		.nav-item{
-			line-height: $h;
-			flex:1;
-			-webkit-flex:1;
-		}
-	}
+	
 </style>

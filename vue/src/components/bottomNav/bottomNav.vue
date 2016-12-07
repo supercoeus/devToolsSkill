@@ -36,7 +36,9 @@
 		width: 100%;
 		display: flex;
 		display: -webkit-flex;
+		border-top:1px solid #e2e2e2;
 		.nav-item{
+			text-align: center;
 			line-height: $h;
 			flex:1;
 			-webkit-flex:1;
