@@ -2,7 +2,7 @@
 // require("../build/css/_ignore/base.scss");
 import Vue from "../public/js/plugins/vue.js";
 import VueRouter from "../public/js/plugins/vue-router.2.1.1.js";
-import bottomNav from "./components/bottomNav/bottomNav.vue";
+import App from "./App.vue";
 
 
 new Vue({
@@ -16,7 +16,7 @@ new Vue({
 
 	},
 	components:{
-		App:bottomNav
+		App:App
 	}
 });
 
