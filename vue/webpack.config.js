@@ -1,7 +1,7 @@
 var webpack=require("webpack");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');//内置了js压缩 css 就是分离等功能  css和js都会被压缩掉
-
+var path=require("path");
 /*
 webpack --watch   会自动监听
 webpack   一次性执行
@@ -22,6 +22,11 @@ test :一个匹配loaders所处理的文件的拓展名的正则表达式
 loader：loader的名称
 include/exclude：手动添加必须处理的文件（文件夹）或屏蔽不需要处理的文件（文件夹）（可选）
 query：为loaders提供额外的设置选项（可选）
+
+alias:别名
+避免组件的相互引用路径问题
+import 和require的时候的路径名 aliasName/aa/bb/......
+scss的import不能用别名
 
 
 babel的配置放在了.babellrc文件中
@@ -44,7 +49,7 @@ module.exports={
 	entry:{
 		"page/main":srcPath+"main.js",
 		"page/array":[srcPath+"a.js",srcPath+"b.js",srcPath+"c.js"],
-		"app":"./src/app.js"
+		"app":"./src/main.js"
 	},
 	output:{
 		path:distPath,
@@ -64,6 +69,12 @@ module.exports={
 				exclude: /node_modules/,
 			},
 		]
+	},
+	resolve:{
+		extensions:["",".css",".scss",".js",".vue"],
+		alias:{
+			"components":path.resolve(__dirname,"./src/components/"),
+		}
 	},
 	plugins: [
     // new HtmlWebpackPlugin({template: __dirname + "/view/index.html"}),

@@ -21,11 +21,6 @@
 </script>
 
 
-<!--
- require("!style!css!sass!../build/css/_ignore/base.scss");
- -->
-
-
 <style scoped lang="sass">
 	.bottom-nav-ul{
 		$h:40px;

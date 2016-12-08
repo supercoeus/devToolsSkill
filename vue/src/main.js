@@ -1,8 +1,5 @@
-
-// require("../build/css/_ignore/base.scss");
 import Vue from "../public/js/plugins/vue.js";
-import VueRouter from "../public/js/plugins/vue-router.2.1.1.js";
-import App from "./App.vue";
+import App from "./App";
 
 
 new Vue({

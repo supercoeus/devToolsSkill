@@ -1,26 +1,56 @@
 <template>
-	<v-bottomNav><v-bottomNav>
+	<div>
+		<v-header></v-header>
+		<ul class="tab-ul">
+			<li>
+				<router-link to="/goods">商品</router-link>
+			</li>
+			<li>
+				<router-link to="/ratings">评论</router-link>
+			</li>
+			<li>
+				<router-link to="/seller">商家</router-link>
+			</li>
+		</ul>
+		<div>
+			<router-view></router-view>
+		</div>
+		<v-bottomNav></v-bottomNav>
+	</div>
 </template>
 
-<script>
-	import bottomNav from "./components/bottomNav/bottomNav.vue";
+<script type="text/ecmascript-6">
+	import VueRouter from "../public/js/plugins/vue-router.2.1.1.js";
+	import Header from "components/header/header.vue";
+	import Goods from "components/goods/goods.vue";
+	import Ratings from "components/ratings/ratings.vue";
+	import Seller from "components/seller/seller.vue";
+	import BottomNav from "components/bottomNav/bottomNav.vue";
+
+
+	const routes=[
+		{path:"/goods",component:{template:Goods}},
+		{path:"/ratings",component:{template:Ratings}},
+		{path:"/seller",component:{template:Seller}}
+	];
+	const router=new VueRouter({routes:routes});
+
 	export default {
+		router,
 		data(){
 			return {
-				navs:[
-					{text:"首页"},
-					{text:"消息"},
-					{text:"关于"},
-				],
+				
 			}
 		},
 		components:{
-			'v-bottomNav':bottomNav
+			"v-header":Header,
+			'v-bottomNav':BottomNav
 		}
 	}
 </script>
-<style type="text/css" src="../public/css/app.min.css"></style>
+
 <style  lang="sass">
+	@import "../build/css/_ignore/base.scss";
 	html,body,#v-app{
 		width: 100%;
 		height: 100%;
@@ -31,5 +61,20 @@
 </style>
 
 <style scoped lang="sass">
-	
+	.tab-ul{
+		$h:40px;
+		display: flex;
+		display: -webkit-flex;
+		background-color:#fff;
+		border-bottom: 1px solid #d9d9d9;
+		li{
+			flex:1;
+			-webkit-flex:1;
+			a{
+				line-height: $h;
+				display: block;
+				text-align: center;
+			}
+		}
+	}
 </style>
