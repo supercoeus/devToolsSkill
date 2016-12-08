@@ -1,4 +1,4 @@
-import Vue from "../public/js/plugins/vue.js";
+import Vue from "vue";
 import App from "./App";
 
 
