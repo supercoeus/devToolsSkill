@@ -2,7 +2,7 @@
 
 
 <script >
-	import VueRouter from "../public/js/plugins/vue-router.2.1.1.js";
+	import VueRouter from "vue-router";
 	import Header from "components/header/header.vue";
 	// import Goods from "components/goods/goods.vue";
 	// import Ratings from "components/ratings/ratings.vue";
