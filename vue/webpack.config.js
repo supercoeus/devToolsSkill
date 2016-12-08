@@ -45,7 +45,7 @@ var distPath="./public/";
 
 
 module.exports={
-	devtool: 'eval-source-map',
+	devtool: '#eval-source-map',
 	entry:{
 		"page/main":srcPath+"main.js",
 		"page/array":[srcPath+"a.js",srcPath+"b.js",srcPath+"c.js"],

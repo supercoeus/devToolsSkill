@@ -1,3 +1,39 @@
+<!-- https://segmentfault.com/q/1010000007071229?_ea=1231525 -->
+
+
+<script >
+	import VueRouter from "../public/js/plugins/vue-router.2.1.1.js";
+	import Header from "components/header/header.vue";
+	// import Goods from "components/goods/goods.vue";
+	// import Ratings from "components/ratings/ratings.vue";
+	// import Seller from "components/seller/seller.vue";
+	import BottomNav from "components/bottomNav/bottomNav.vue";
+
+	var Goods="<h3>Goods</h3>";
+	var Ratings="<h3>Ratings</h3>";
+	var Seller="<h3>Seller</h3>";
+
+	const routes=[
+		{path:"/goods",component:{template:Goods}},
+		{path:"/ratings",component:{template:Ratings}},
+		{path:"/seller",component:{template:Seller}}
+	];
+	const router=new VueRouter({routes :routes });
+
+	export default {
+		router ,
+		data(){
+			return {
+				
+			}
+		},
+		components:{
+			"v-header":Header,
+			'v-bottomNav':BottomNav
+		}
+	}
+</script>
+
 <template>
 	<div>
 		<v-header></v-header>
@@ -19,35 +55,6 @@
 	</div>
 </template>
 
-<script type="text/ecmascript-6">
-	import VueRouter from "../public/js/plugins/vue-router.2.1.1.js";
-	import Header from "components/header/header.vue";
-	import Goods from "components/goods/goods.vue";
-	import Ratings from "components/ratings/ratings.vue";
-	import Seller from "components/seller/seller.vue";
-	import BottomNav from "components/bottomNav/bottomNav.vue";
-
-
-	const routes=[
-		{path:"/goods",component:{template:Goods}},
-		{path:"/ratings",component:{template:Ratings}},
-		{path:"/seller",component:{template:Seller}}
-	];
-	const router=new VueRouter({routes:routes});
-
-	export default {
-		router,
-		data(){
-			return {
-				
-			}
-		},
-		components:{
-			"v-header":Header,
-			'v-bottomNav':BottomNav
-		}
-	}
-</script>
 
 <style  lang="sass">
 	@import "../build/css/_ignore/base.scss";
