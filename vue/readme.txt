@@ -10,9 +10,12 @@ scope代表当前样式只应用于当前组件  避免全局污染
 
 
 问题？
-1.为什么打包的文件很大
+1.为什么打包的文件很大  因为webpack设置的devtool了 所以很大，不要设置  http://www.jianshu.com/p/a64735eb0e2b
 2.引用的vue无法使用
 3.页面单独引用可以使用
 4.组件内部如何引用外部scss样式 @import "name.scss"
 
+
+路由不能写在组建内部，必须写在主文件main里面
+而且需要这样用  Vue.use（vueRouter）
 

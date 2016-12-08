@@ -2,26 +2,12 @@
 
 
 <script >
-	import VueRouter from "vue-router";
+	
 	import Header from "components/header/header.vue";
-	// import Goods from "components/goods/goods.vue";
-	// import Ratings from "components/ratings/ratings.vue";
-	// import Seller from "components/seller/seller.vue";
 	import BottomNav from "components/bottomNav/bottomNav.vue";
 
-	var Goods="<h3>Goods</h3>";
-	var Ratings="<h3>Ratings</h3>";
-	var Seller="<h3>Seller</h3>";
-
-	const routes=[
-		{path:"/goods",component:{template:Goods}},
-		{path:"/ratings",component:{template:Ratings}},
-		{path:"/seller",component:{template:Seller}}
-	];
-	const router=new VueRouter({routes :routes });
-
+	
 	export default {
-		router ,
 		data(){
 			return {
 				

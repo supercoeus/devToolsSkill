@@ -35,6 +35,8 @@ html的插件会替换掉hml中的引用js 以及版本号  但是html的放置�
 
 http://blog.csdn.net/kun5706947/article/details/52596766
 https://segmentfault.com/a/1190000003985802
+https://zhuanlan.zhihu.com/p/20914387?refer=jscss
+http://www.cnblogs.com/lvdabao/p/5944420.html      关于打包优化以及一些细节
 
 
 */
@@ -45,10 +47,10 @@ var distPath="./public/";
 
 
 module.exports={
-	devtool: '#eval-source-map',
+	// devtool: '#eval-source-map',
 	entry:{
-		"page/main":srcPath+"main.js",
-		"page/array":[srcPath+"a.js",srcPath+"b.js",srcPath+"c.js"],
+		// "page/main":srcPath+"main.js",
+		// "page/array":[srcPath+"a.js",srcPath+"b.js",srcPath+"c.js"],
 		"app":"./src/main.js"
 	},
 	output:{
@@ -79,7 +81,12 @@ module.exports={
 	},
 	plugins: [
     // new HtmlWebpackPlugin({template: __dirname + "/view/index.html"}),
-    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.optimize.DedupePlugin(),//插件去重
     new ExtractTextPlugin("style.css")
   ],
 }
