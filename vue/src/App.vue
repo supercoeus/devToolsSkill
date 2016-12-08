@@ -1,24 +1,3 @@
-<!-- https://segmentfault.com/q/1010000007071229?_ea=1231525 -->
-
-
-<script >
-	
-	import Header from "components/header/header.vue";
-	import BottomNav from "components/bottomNav/bottomNav.vue";
-
-	
-	export default {
-		data(){
-			return {
-				
-			}
-		},
-		components:{
-			"v-header":Header,
-			'v-bottomNav':BottomNav
-		}
-	}
-</script>
 
 <template>
 	<div>
@@ -41,6 +20,24 @@
 	</div>
 </template>
 
+<script >
+	
+	import Header from "components/header/header.vue";
+	import BottomNav from "components/bottomNav/bottomNav.vue";
+
+	
+	export default {
+		data(){
+			return {
+				
+			}
+		},
+		components:{
+			"v-header":Header,
+			'v-bottomNav':BottomNav
+		}
+	}
+</script>
 
 <style  lang="sass">
 	@import "../build/css/_ignore/base.scss";
