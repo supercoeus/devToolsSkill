@@ -20,11 +20,12 @@
 	@import "../../../build/css/_ignore/mixin.scss";
 
 	.header{
+		$h:pxToRem(360);
 		background-image:url(header.jpg);
 		background-color: #f94;
 		background-size: 100% 100%;
 		background-repeat: no-repeat;
-		min-height: 180px;
+		min-height: $h;
 		@include boxSizing(border-box); 
 		
 	}

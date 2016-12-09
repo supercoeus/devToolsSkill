@@ -25,11 +25,6 @@
 	import Header from "components/header/header.vue";
 	import BottomNav from "components/bottomNav/bottomNav.vue";
 
-	import Goods from "components/goods/goods.vue";
-	import Ratings from "components/ratings/ratings.vue";
-	import Seller from "components/seller/seller.vue";
-
-	
 	export default {
 		data(){
 			return {
@@ -55,8 +50,9 @@
 </style>
 
 <style scoped lang="sass">
+	@import "../build/css/_ignore/mixin.scss";
 	.tab-ul{
-		$h:40px;
+		$h:pxToRem(80);
 		display: flex;
 		display: -webkit-flex;
 		background-color:#fff;

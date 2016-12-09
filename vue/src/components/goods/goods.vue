@@ -130,23 +130,23 @@
 
 <style scoped lang="sass">
 	@import "../../../build/css/_ignore/mixin.scss";
-
+	
+	@include DPR(".wraper .menu-wraper",12px);
 	.wraper{
 		position: absolute;
-		top:220px;
+		top:pxToRem(440);
 		left:0;
 		right:0;
-		bottom:40px;
+		bottom:pxToRem(100);
 		width: 100%;
 		display: flex;
 		overflow: hidden;
 		.menu-wraper{
-			flex:0 0 80px;
+			flex:0 0 pxToRem(160);
 			background-color: #f3f3f3;
-			font-size: 14px;
 			.menu-list{
 				.menu-item{
-					line-height: 40px;
+					line-height: pxToRem(80);
 					text-align: center;
 					border-bottom: 1px solid #e8e8e8;
 

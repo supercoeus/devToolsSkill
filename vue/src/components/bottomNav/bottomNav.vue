@@ -22,8 +22,9 @@
 
 
 <style scoped lang="sass">
+	@import "../../../build/css/_ignore/mixin.scss";
 	.bottom-nav-ul{
-		$h:40px;
+		$h:pxToRem(100);
 		height: $h;
 		position: fixed;
 		bottom:0;
