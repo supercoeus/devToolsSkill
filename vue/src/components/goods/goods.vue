@@ -1,6 +1,6 @@
 <template>
 	<div class="wraper">
-		<div class="menu-wraper" id:menuWraper>
+		<div class="menu-wraper" ref="menuWraper" >
 			<ul class="menu-list">
 				<li v-for="group in foodsGroupList" v-text="group.label" class="menu-item"></li>
 			</ul>
@@ -74,6 +74,38 @@
 							{name:"雪菜肉丝面"}
 						]
 					},
+					{
+						label:"面食",
+						foodList:[
+							{name:"炸酱面"},
+							{name:"焖面"},
+							{name:"雪菜肉丝面"}
+						]
+					},
+					{
+						label:"面食",
+						foodList:[
+							{name:"炸酱面"},
+							{name:"焖面"},
+							{name:"雪菜肉丝面"}
+						]
+					},
+					{
+						label:"面食",
+						foodList:[
+							{name:"炸酱面"},
+							{name:"焖面"},
+							{name:"雪菜肉丝面"}
+						]
+					},
+					{
+						label:"面食",
+						foodList:[
+							{name:"炸酱面"},
+							{name:"焖面"},
+							{name:"雪菜肉丝面"}
+						]
+					},
 				]
 			}
 		},
@@ -81,15 +113,18 @@
 
 		},
 		created(){
+			var self=this;
+			this.$nextTick(function(){
+				self.menuScroll=new Bscroll(this.$refs.menuWraper,{
+	          probeType: 3,
+	          click: true
+	        	});
 
-			this.menuScroll=new Bscroll(this.elems.menuWraper,{
-          probeType: 3,
-          click: true
-        	});
-
-			this.menuScroll.on("scroll",(prop)=>{
-				console.log(prop);
+				self.menuScroll.on("scroll",(prop)=>{
+					console.log(prop);
+				});
 			});
+			
 
 		}
 	}
@@ -105,6 +140,7 @@
 		bottom:40px;
 		width: 100%;
 		display: flex;
+		overflow: hidden;
 		.menu-wraper{
 			flex:0 0 80px;
 			background-color: #f3f3f3;
