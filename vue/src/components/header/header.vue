@@ -18,8 +18,14 @@
 
 <style scoped lang="sass">
 	@import "../../../build/css/_ignore/mixin.scss";
+
 	.header{
-		min-height: 40px;
+		background-image:url(header.jpg);
+		background-color: #f94;
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		min-height: 180px;
 		@include boxSizing(border-box); 
+		
 	}
 </style>

@@ -39,6 +39,8 @@ https://zhuanlan.zhihu.com/p/20914387?refer=jscss
 http://www.cnblogs.com/lvdabao/p/5944420.html      关于打包优化以及一些细节
 
 
+http://www.jianshu.com/p/271f93b8c051
+
 */
 
 
@@ -55,6 +57,7 @@ module.exports={
 	},
 	output:{
 		path:distPath,
+		publicPath:"./public/",
 		filename:"/js/[name].min.js",
 		chunkFilename: "[id].bundle.js"
 		// filename:"[name]-[hash].min.js"
@@ -70,6 +73,10 @@ module.exports={
 				loader: "babel-loader",
 				exclude: /node_modules/,
 			},
+			{
+				test: /\.(png|jpe?g|eot|svg|ttf|woff2?)$/,
+            loader: "file?name=image/[name].[ext]"
+			}
 		]
 	},
 	resolve:{

@@ -25,6 +25,10 @@
 	import Header from "components/header/header.vue";
 	import BottomNav from "components/bottomNav/bottomNav.vue";
 
+	import Goods from "components/goods/goods.vue";
+	import Ratings from "components/ratings/ratings.vue";
+	import Seller from "components/seller/seller.vue";
+
 	
 	export default {
 		data(){

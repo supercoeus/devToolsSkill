@@ -19,3 +19,12 @@ scope代表当前样式只应用于当前组件  避免全局污染
 路由不能写在组建内部，必须写在主文件main里面
 而且需要这样用  Vue.use（vueRouter）
 
+
+路由引用的组件，不能用
+
+import Goods from ./asd/goods.vue
+{path:"/goods",component:{template:Goods}}
+
+而应该
+import Goods from ./asd/goods.vue
+{path:"/goods",component:Goods}
