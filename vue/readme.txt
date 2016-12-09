@@ -28,3 +28,8 @@ import Goods from ./asd/goods.vue
 而应该
 import Goods from ./asd/goods.vue
 {path:"/goods",component:Goods}
+
+
+
+只要涉及到查找元素，都需要在mounted里面调用；如果涉及到数据读取，异步读取数据后需要调用this.$nextTick（callback）在callback里面写对应的逻辑
+
