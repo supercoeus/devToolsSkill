@@ -37,7 +37,8 @@
 </script>
 
 <style  lang="sass">
-	@import "../build/css/_ignore/base.scss";
+	@import "../build/css/_ignore/mixin.scss";
+	
 	html,body,#v-app{
 		width: 100%;
 		height: 100%;

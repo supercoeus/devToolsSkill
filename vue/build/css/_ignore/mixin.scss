@@ -103,10 +103,14 @@
 	}
 }
 
+
+
 @mixin fontFace($file-path){
-    @font-face {
-        font-family: "iconfont";
-        src: url("#{$file-path}/iconfont/iconfont.ttf") format('truetype'),
-        url("#{$file-path}/iconfont/iconfont.svg#iconfont") format('svg');
-    }
+	@font-face {font-family: "iconfont";
+	  src: url('#{$file-path}/iconfont.eot?t=1481357234756'); /* IE9*/
+	  src: url('#{$file-path}/iconfont.eot?t=1481357234756#iefix') format('embedded-opentype'), /* IE6-IE8 */
+	  url('#{$file-path}/iconfont.woff?t=1481357234756') format('woff'), /* chrome, firefox */
+	  url('#{$file-path}/iconfont.ttf?t=1481357234756') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+	  url('#{$file-path}/iconfont.svg?t=1481357234756#iconfont') format('svg'); /* iOS 4.1- */
+	}
 }

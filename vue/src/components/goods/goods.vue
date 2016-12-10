@@ -5,7 +5,8 @@
 				<li v-for="(group,index) in foodsGroupList" 
 					v-text="group.label + index" 
 					class="menu-item" 
-					:class="{'active':index == currentIndex}">
+					:class="{'active':index == currentIndex}"
+					v-on:click="goodsGoIndex(index)">
 					
 				</li>
 			</ul>
@@ -24,6 +25,15 @@
 								<span class="fc-red">¥</span>
 								<span v-text="list.price" class="fc-red"></span>
 							</p>
+							<p class="operate-line">
+								<transition name="slide-decrease">
+									<span v-show="needShow" class="decrease iconfont icon-tubiao fn-fl"></span>
+								</transition>
+								<transition name="slide-text">
+									<span v-show="needShow" class="selected fn-fl" v-text="list.selectedNum"></span>
+								</transition>
+								<span class="add iconfont icon-icontianjia01 fn-fl" v-on:click="addFoods(group,list)"></span>
+							</p>
 						</div>
 					</li>
 				</ul>
@@ -39,13 +49,43 @@
 		data(){
 			return {
 				currentIndex:0,
+				scrollY:0,
+				foodsGroupHeight:[],
 				foodsGroupList:goodsData.foodsGroupList
 			}
 		},
-		method:{
+		computed:{
+			
+		},
+		methods:{
+			_caculateIndex(){
+				var self=this;
+				var scrollY=this.scrollY;
+				var length=this.foodsGroupHeight.length;
+				for(var i=0;i<length;i++){
+					var item=this.foodsGroupHeight[i];
+					var itemNext=this.foodsGroupHeight[i+1];
+					
+					if(scrollY>=item && scrollY<=itemNext) {
+						this.currentIndex=i;
+						if((scrollY+this.$refs.goodsWraper.clientHeight>=this.foodsGroupHeight[length-1])){
+							this.currentIndex=length-2;
+						}
+					}
 
+				}
+			},
+			goodsGoIndex(index){
+				var to= - this.foodsGroupHeight[index];
+				this.goodsScroll.scrollTo(0, to,500 );
+			},
+			addFoods:function(group,list){
+				var index1=this.foodsGroupList.indexOf(group);
+				var index2=group.foodList.indexOf(list);
+			}
 		},
 		mounted(){
+			var self=this;
 			console.log("mounted");
 			this.menuScroll=new Bscroll(this.$refs.menuWraper,{
 	          probeType: 3,
@@ -57,19 +97,35 @@
 	          click: true
         	});
 
-			this.menuScroll.on("scroll",(prop)=>{
-				console.log(prop);
+			this.goodsScroll.on("scroll",(prop)=>{
+				this.scrollY=Math.abs( Math.round(prop.y) );
+				this._caculateIndex();
 			});
 
-		}
+			var startH=0;
+			self.foodsGroupHeight.push(startH);
+			var groups=this.$refs.goodsWraper.getElementsByClassName("food-group");
+			for(var i=0;i<groups.length;i++){
+				var group=groups[i];
+				var height=group.clientHeight;
+				startH+=height;
+				self.foodsGroupHeight.push(startH);
+			}
+		},
+		
 	}
 </script>
 
 
 <style scoped lang="sass">
 	@import "../../../build/css/_ignore/mixin.scss";
+	@import "../../../build/css/_ignore/theme.scss";
 	
 	@include DPR(".wraper .menu-wraper",12px);
+	@include DPR(".wraper .operate-line .decrease",20px);
+	@include DPR(".wraper .operate-line .add",20px);
+
+
 	.wraper{
 		position: absolute;
 		top:pxToRem(440);
@@ -129,11 +185,65 @@
 						.price-line{
 							line-height: pxToRem(90);
 						}
+						.operate-line{
+							position: absolute;
+							right: pxToRem(10);
+							bottom:pxToRem(10);
+							text-align: right;
+							$size:pxToRem(60);
+							width: $size;
+							$height: $size;
+							span{
+								position: absolute;
+								left:0;
+								bottom:0;
+								$size:pxToRem(40);
+								display: block;
+								margin:0 pxToRem(10);
+								line-height: $size;
+								text-align: center;
+								&.decrease{
+									color:$theme-blue;
+									opacity: 0;
+									transition: all ease 400ms;
+									z-index: 1;
+								}
+								&.num{
+									opacity: 0;
+									transition: all ease 400ms;
+									z-index: 2;
+								}
+								&.add{
+									color: $theme-blue;
+									z-index: 3;
+								}
+							}
+						}
 					}
 				}
 			}
 
 		}
 	}
+
+	.slide-decrease-enter-active,.slide-text-enter-active,{
+		transition:all ease 400ms;
+	}
+
+	.slide-decrease-leave-active{
+		opacity:0;
+	}
+	.slide-decrease-active{
+		opacity:1;
+	}
+	.slide-decrease-enter{
+		opacity:0;
+	}
+
+
 	
+
+	.slide-decrease-enter{
+		
+	}
 </style>
