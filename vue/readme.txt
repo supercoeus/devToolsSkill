@@ -47,6 +47,9 @@ import Goods from ./asd/goods.vue
 v－for＝“（item,index）in lists”
 
 
+5.动画的关键在于
+元素的初始化状态就要设置成动画完成时候的状态
+
 
 
 4.如何解决热加载的问题？

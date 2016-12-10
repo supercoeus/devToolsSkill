@@ -7,7 +7,6 @@
 					class="menu-item" 
 					:class="{'active':index == currentIndex}"
 					v-on:click="goodsGoIndex(index)">
-					
 				</li>
 			</ul>
 		</div>
@@ -27,10 +26,10 @@
 							</p>
 							<p class="operate-line">
 								<transition name="slide-decrease">
-									<span v-show="needShow" class="decrease iconfont icon-tubiao fn-fl"></span>
+									<span v-show="list.needShow" class="decrease iconfont icon-tubiao fn-fl"></span>
 								</transition>
 								<transition name="slide-text">
-									<span v-show="needShow" class="selected fn-fl" v-text="list.selectedNum"></span>
+									<span v-show="list.needShow" class="count fn-fl" v-text="list.selectedNum"></span>
 								</transition>
 								<span class="add iconfont icon-icontianjia01 fn-fl" v-on:click="addFoods(group,list)"></span>
 							</p>
@@ -82,6 +81,9 @@
 			addFoods:function(group,list){
 				var index1=this.foodsGroupList.indexOf(group);
 				var index2=group.foodList.indexOf(list);
+				var foodItem=this.foodsGroupList[index1].foodList[index2];
+				foodItem.needShow=true;
+				console.log(foodItem);
 			}
 		},
 		mounted(){
@@ -122,8 +124,8 @@
 	@import "../../../build/css/_ignore/theme.scss";
 	
 	@include DPR(".wraper .menu-wraper",12px);
-	@include DPR(".wraper .operate-line .decrease",20px);
-	@include DPR(".wraper .operate-line .add",20px);
+	@include DPR(".wraper .operate-line span",20px);
+	@include DPR(".wraper .operate-line .count",16px);
 
 
 	.wraper{
@@ -191,26 +193,23 @@
 							bottom:pxToRem(10);
 							text-align: right;
 							$size:pxToRem(60);
-							width: $size;
-							$height: $size;
+							height: $size;
+							font-size: 0;
 							span{
-								position: absolute;
-								left:0;
+								
 								bottom:0;
 								$size:pxToRem(40);
-								display: block;
+								display: inline-block;
 								margin:0 pxToRem(10);
 								line-height: $size;
 								text-align: center;
 								&.decrease{
 									color:$theme-blue;
-									opacity: 0;
-									transition: all ease 400ms;
 									z-index: 1;
+									opacity:1;
 								}
-								&.num{
-									opacity: 0;
-									transition: all ease 400ms;
+								&.count{
+									opacity: 1;
 									z-index: 2;
 								}
 								&.add{
@@ -226,24 +225,41 @@
 		}
 	}
 
-	.slide-decrease-enter-active,.slide-text-enter-active,{
+	.slide-decrease-enter-active,.slide-decrease-leave-active{
+		transition:all ease 400ms;
+	}
+	.slide-decrease-enter-active{
+		opacity:1;
+		transform:translate3d(- pxToRem(0),0,0) rotate(-360deg);
+	}
+	.slide-decrease-leave-active{
+		opacity:1;
+		transform:translate3d(0,0,0)  rotate(0deg);
+	}
+	
+	.slide-decrease-enter{
+		opacity:0;
+		transform:translate3d(pxToRem(100),0,0)  rotate(0deg);
+	}
+	
+
+
+	.slide-text-enter-active,.slide-text-leave-active{
 		transition:all ease 400ms;
 	}
 
-	.slide-decrease-leave-active{
+	.slide-text-leave-active{
 		opacity:0;
+		transform:translate3d(0,0,0);
 	}
-	.slide-decrease-active{
+	.slide-text-enter-active{
 		opacity:1;
+		transform:translate3d(0,0,0);
 	}
-	.slide-decrease-enter{
+	.slide-text-enter{
 		opacity:0;
+		transform:translate3d(pxToRem(50),0,0);
 	}
 
 
-	
-
-	.slide-decrease-enter{
-		
-	}
 </style>

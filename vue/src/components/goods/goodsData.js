@@ -3,89 +3,89 @@ export default {
 		{
 			"label":"粥",
 			"foodList":[
-				{"name":"小米粥","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
-				{"name":"红豆粥","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5.8},
-				{"name":"黑米粥","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":4}
+				{"selectedNum":0,"needShow":false,"name":"小米粥","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
+				{"selectedNum":0,"needShow":false,"name":"红豆粥","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5.8},
+				{"selectedNum":0,"needShow":false,"name":"黑米粥","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":4}
 			]
 		},
 		{
 			"label":"面食",
 			"foodList":[
-				{"name":"炸酱面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":8},
-				{"name":"焖面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":3},
-				{"name":"雪菜肉丝面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":8.2}
+				{"selectedNum":0,"needShow":false,"name":"炸酱面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":8},
+				{"selectedNum":0,"needShow":false,"name":"焖面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":3},
+				{"selectedNum":0,"needShow":false,"name":"雪菜肉丝面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":8.2}
 			]
 		},
 		{
 			"label":"面食",
 			"foodList":[
-				{"name":"炸酱面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":4},
-				{"name":"焖面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":6.4},
-				{"name":"雪菜肉丝面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":2.9}
+				{"selectedNum":0,"needShow":false,"name":"炸酱面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":4},
+				{"selectedNum":0,"needShow":false,"name":"焖面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":6.4},
+				{"selectedNum":0,"needShow":false,"name":"雪菜肉丝面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":2.9}
 			]
 		},
 		{
 			"label":"面食",
 			"foodList":[
-				{"name":"炸酱面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":4.2},
-				{"name":"焖面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":7.3},
-				{"name":"雪菜肉丝面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5}
+				{"selectedNum":0,"needShow":false,"name":"炸酱面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":4.2},
+				{"selectedNum":0,"needShow":false,"name":"焖面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":7.3},
+				{"selectedNum":0,"needShow":false,"name":"雪菜肉丝面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5}
 			]
 		},
 		{
 			"label":"面食",
 			"foodList":[
-				{"name":"炸酱面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
-				{"name":"焖面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
-				{"name":"雪菜肉丝面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5}
+				{"selectedNum":0,"needShow":false,"name":"炸酱面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
+				{"selectedNum":0,"needShow":false,"name":"焖面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
+				{"selectedNum":0,"needShow":false,"name":"雪菜肉丝面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5}
 			]
 		},
 		{
 			"label":"面食",
 			"foodList":[
-				{"name":"炸酱面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
-				{"name":"焖面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
-				{"name":"雪菜肉丝面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5}
+				{"selectedNum":0,"needShow":false,"name":"炸酱面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
+				{"selectedNum":0,"needShow":false,"name":"焖面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
+				{"selectedNum":0,"needShow":false,"name":"雪菜肉丝面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5}
 			]
 		},
 		{
 			"label":"面食",
 			"foodList":[
-				{"name":"炸酱面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":10.5},
-				{"name":"焖面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5.4},
-				{"name":"雪菜肉丝面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":9.5}
+				{"selectedNum":0,"needShow":false,"name":"炸酱面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":10.5},
+				{"selectedNum":0,"needShow":false,"name":"焖面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5.4},
+				{"selectedNum":0,"needShow":false,"name":"雪菜肉丝面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":9.5}
 			]
 		},
 		{
 			"label":"面食",
 			"foodList":[
-				{"name":"炸酱面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
-				{"name":"焖面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
-				{"name":"雪菜肉丝面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5}
+				{"selectedNum":0,"needShow":false,"name":"炸酱面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
+				{"selectedNum":0,"needShow":false,"name":"焖面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
+				{"selectedNum":0,"needShow":false,"name":"雪菜肉丝面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5}
 			]
 		},
 		{
 			"label":"面食",
 			"foodList":[
-				{"name":"炸酱面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
-				{"name":"焖面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
-				{"name":"雪菜肉丝面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5}
+				{"selectedNum":0,"needShow":false,"name":"炸酱面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
+				{"selectedNum":0,"needShow":false,"name":"焖面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
+				{"selectedNum":0,"needShow":false,"name":"雪菜肉丝面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5}
 			]
 		},
 		{
 			"label":"面食",
 			"foodList":[
-				{"name":"炸酱面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
-				{"name":"焖面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
-				{"name":"雪菜肉丝面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5}
+				{"selectedNum":0,"needShow":false,"name":"炸酱面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
+				{"selectedNum":0,"needShow":false,"name":"焖面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
+				{"selectedNum":0,"needShow":false,"name":"雪菜肉丝面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5}
 			]
 		},
 		{
 			"label":"面食",
 			"foodList":[
-				{"name":"炸酱面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
-				{"name":"焖面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
-				{"name":"雪菜肉丝面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5}
+				{"selectedNum":0,"needShow":false,"name":"炸酱面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
+				{"selectedNum":0,"needShow":false,"name":"焖面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5},
+				{"selectedNum":0,"needShow":false,"name":"雪菜肉丝面","imgSrc":"http://res.hoto.cn/03395bef59633f0df444eb88.jpg!default","price":5}
 			]
 		},
 	]
