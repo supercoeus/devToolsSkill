@@ -121,7 +121,8 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { bac
 .fc-primary{color:#ff6900 !important;}
 .fc-link{color:#0092ff;}
 .fc-f{color:#fff}
-.fc-error{color: $theme-red;}
+.fc-error,.fc-red{color: $theme-red;}
+
 
 /*font-size*/
 .fs-12{font-size: 12px !important;}

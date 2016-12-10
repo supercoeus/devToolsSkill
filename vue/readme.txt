@@ -43,6 +43,11 @@ import Goods from ./asd/goods.vue
 不然找不到元素
 
 
+4.循环
+v－for＝“（item,index）in lists”
+
+
+
 
 4.如何解决热加载的问题？
 

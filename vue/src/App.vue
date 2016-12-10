@@ -13,9 +13,7 @@
 				<router-link to="/seller">商家</router-link>
 			</li>
 		</ul>
-		<div>
 			<router-view></router-view>
-		</div>
 		<v-bottomNav></v-bottomNav>
 	</div>
 </template>
