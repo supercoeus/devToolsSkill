@@ -27,7 +27,7 @@
 								</p>
 
 								<p class="operate-line">
-									<v-cartControl :goods="list"></v-cartControl>
+									<v-cartControl :goods="list" ></v-cartControl>
 								</p>
 							</div>
 						</li>
@@ -37,7 +37,8 @@
 			
 		</div>
 		<v-shopCart :deliveryPrice="deliveryPrice" 
-					:minAcount="minAcount"
+					:minAcount="minAcount" 
+					:selectedFoods="selectedFoods"
 		>
 			
 		</v-shopCart>
@@ -59,10 +60,24 @@
 				foodsGroupList:goodsData.foodsGroupList,
 				deliveryPrice:4,//配送费
 				minAcount:20,//起送费
+				// selectedFoods:[]
 			}
 		},
 		computed:{
-			
+			selectedFoods(){
+				var selectedFoodsArr=[];
+				this.foodsGroupList.forEach(function(group,index){
+					var group=group.foodList;
+					for(var i=0;i<group.length;i++){
+						if(group[i].selectedNum>0){
+							selectedFoodsArr.push(group[i]);
+						}
+					}
+				});
+				console.log(selectedFoodsArr);
+				// selectedFoodsArr.push({selectedNum:1,price:10});
+				return selectedFoodsArr;
+			},
 		},
 		methods:{
 			_caculateIndex(){

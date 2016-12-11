@@ -15,6 +15,7 @@
 </template>
 
 <script >
+	import Vue from "vue";
 	export default {
 		data(){
 			return {
@@ -24,21 +25,24 @@
 		methods:{
 			addFoods:function(good){
 				if(!good.selectedNum){
-					good.selectedNum=1;
+					Vue.set(this.goods,"selectedNum",1);
 				}
 				else{
-					good.selectedNum+=1;
+					Vue.set(this.goods,"selectedNum",this.goods.selectedNum+1);
 				}
 			},
 			decreaseFoods(good){
 				if(good.selectedNum>0){
-					good.selectedNum-=1;
+					Vue.set(this.goods,"selectedNum",this.goods.selectedNum-1);
 				}
 			}
 		},
 		props:{
 			goods:{
-				type:Object
+				type:Object,
+				default:function(){
+					return {};
+				}
 			}
 		}
 	}
