@@ -13,8 +13,8 @@
 				<router-link to="/seller">商家</router-link>
 			</li>
 		</ul>
-			<router-view></router-view>
-		<v-bottomNav></v-bottomNav>
+		<router-view ></router-view>
+		
 	</div>
 </template>
 
@@ -22,6 +22,7 @@
 	
 	import Header from "components/header/header.vue";
 	import BottomNav from "components/bottomNav/bottomNav.vue";
+	
 
 	export default {
 		data(){
@@ -31,7 +32,8 @@
 		},
 		components:{
 			"v-header":Header,
-			'v-bottomNav':BottomNav
+			'v-bottomNav':BottomNav,
+			
 		}
 	}
 </script>
